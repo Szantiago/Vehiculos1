@@ -1,49 +1,49 @@
 
 package Formularios;
-
+import vehiculos.Cliente;
 /**
- * /**
  * UNIVERSIDAD DE CUNDINAMARCA
  * Ingenieria de Sistemas
- * Estudiantes: - Ivan Corredor Briceño
- *              - Víctor Pinzón Rodríguez
+ * Estudiantes: - Leidy Arevalo
+ *              - Santiago Lozano
+ *              - Victor Pinzon
  * 
- * Profesor: Jorge Páramo Fonseca
+ * Profesor: Diego Arce
  * 
- * @author Víctor Pinzón
+ * @author 
  * @version 1.0
  * 
- * Es el formulario superautos y la tabla tbCliente
  */
-public class Cliente extends javax.swing.JFrame {
-    tbCliente micliente = new tbCliente(); //Crear constructor vacio de la clase tbCliente
-    tbCliente[] miListaCl = micliente.CrudListaCliente();//array de los clientes
+public class Clientes extends javax.swing.JFrame {
+    Cliente micliente = new Cliente(); //Crear constructor vacio de la clase tbCliente
+    Cliente[] miListaCl = micliente.CrudListaCliente();
     boolean b;
-    ctTipoDocumento mitdocumento = new ctTipoDocumento(); //Crear constructor vacio de la clase ctTiposDocumento 
-    ctTipoDocumento[] miListaTD = mitdocumento.CrudListaTipoDocumento();//array de los tipos de documento
-    boolean c;
     /**
      * Creates new form FormCliente
      */
-    public Cliente() {
+    public Clientes() {
+        
         initComponents();
         this.setLocation(300,120);//En esta instancia(this)cambiar(set)la posición(Location) 
 //.................................
         //Contador del formulario  
+        //            cons_clie
+//            nume_iden
+//            prim_nomb
+//            segu_nomb 
+//            prim_apel 
+//            segu_apel 
+//            gene_clie 
+//            c  
         b=true;
         for(int intcont=0; intcont < miListaCl.length; intcont++ ){
-        jComboCl.addItem(miListaCl[intcont].getintIdCliente()+" - "+miListaCl[intcont].getintTipoDocumentoCliente()
-        +" - "+ miListaCl[intcont].getstrDocumentoIdentidad()+" - "+ miListaCl[intcont].getstrPrimerNombreCliente()
-        +" - "+ miListaCl[intcont].getstrSegundoNombreCliente()+" - "+ miListaCl[intcont].getstrPrimerApellidoCliente()
-        +" - "+ miListaCl[intcont].getstrSegundoApellidoCliente()+" - "+ miListaCl[intcont].getstrTelefonoCliente()
-        +" - "+ miListaCl[intcont].getstrDireccionCliente());    
+        jComboCl.addItem(miListaCl[intcont].getcons_clie()+" - "+miListaCl[intcont].getnume_iden()
+        +" - "+ miListaCl[intcont].getprim_nomb()+" - "+ miListaCl[intcont].getsegu_nomb()
+        +" - "+ miListaCl[intcont].getprim_apel()+" - "+ miListaCl[intcont].getsegu_apel()
+        +" - "+ miListaCl[intcont].getgene_clie()+" - "+ miListaCl[intcont].getcent_pobl());    
             }
         
-        c=true;
-        for(int intcont=0; intcont < miListaTD.length; intcont++ ){
-        jComboTD.addItem(miListaTD[intcont].getintIdTipoDocumento()+" - "+miListaTD[intcont].getstrNombreTipoDocumento()+" - "
-         + miListaTD[intcont].getstrSiglasTipoDocumento());    
-            }
+        
     }
 
     /**
@@ -74,15 +74,13 @@ public class Cliente extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
         txtDir = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        txtTel = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         btnInsertar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
-        jComboTD = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -102,20 +100,20 @@ public class Cliente extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 255));
-        jLabel2.setText("Tipo Documento");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        jLabel2.setText("Género");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 255));
         jLabel3.setText("# Documento");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
         txtNumD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumDActionPerformed(evt);
             }
         });
-        getContentPane().add(txtNumD, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 67, 130, -1));
+        getContentPane().add(txtNumD, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 130, -1));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 105, 497, 10));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -140,7 +138,7 @@ public class Cliente extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 204, 255));
         jLabel6.setText("Primer apellido");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 178, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
         txtPA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,7 +162,7 @@ public class Cliente extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(204, 204, 255));
-        jLabel8.setText("Dirección");
+        jLabel8.setText("Centro Poblado");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 232, -1, -1));
 
         txtDir.addActionListener(new java.awt.event.ActionListener() {
@@ -172,19 +170,7 @@ public class Cliente extends javax.swing.JFrame {
                 txtDirActionPerformed(evt);
             }
         });
-        getContentPane().add(txtDir, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 229, 149, -1));
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 204, 255));
-        jLabel9.setText("Teléfono");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 232, -1, -1));
-
-        txtTel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 229, 146, -1));
+        getContentPane().add(txtDir, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 149, -1));
         getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 267, 497, 10));
 
         btnInsertar.setText("Insertar");
@@ -219,15 +205,9 @@ public class Cliente extends javax.swing.JFrame {
         });
         getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(464, 288, -1, -1));
 
-        jComboTD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboTDActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jComboTD, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 70, 160, -1));
-
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Formularios/fondo-rojo-5634.jpg"))); // NOI18N
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 350));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 540, 330));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 150, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -255,18 +235,17 @@ public class Cliente extends javax.swing.JFrame {
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         // TODO add your handling code here:
         
-        micliente.CrudInsertarCliente(mitdocumento.getintIdTipoDocumento(), txtNumD.getText(),
+        micliente.CrudInsertarCliente( txtNumD.getText(),
                     txtPN.getText(), txtSN.getText(), txtPA.getText(), 
                     txtSA.getText(), txtTel.getText(), txtDir.getText()); //Se importa el método y los parámetros necesarios
         
-        jComboTD.setSelectedIndex(micliente.getintTipoDocumentoCliente());
-        txtNumD.setText(""); // Entrega el valor en los campos de texto
+        jComboTD.setSelectedIndex(micliente.getcons_clie());
+        txtgenero.setText(""); // Entrega el valor en los campos de texto
         txtPN.setText(""); // Entrega el valor en los campos de texto
         txtSN.setText(""); // Entrega el valor en los campos de texto
         txtPA.setText(""); // Entrega el valor en los campos de texto
         txtSA.setText(""); // Entrega el valor en los campos de texto
         txtDir.setText(""); // Entrega el valor en los campos de texto
-        txtTel.setText(""); // Entrega el valor en los campos de texto
         txtNumD.setText(""); // Entrega el valor en los campos de texto
 
         btnActualizar.setEnabled(false); // Se mantiene el botón actualizar como falso
@@ -274,91 +253,81 @@ public class Cliente extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
-            FormMenuVendedor Fmenu =  new FormMenuVendedor();
-            Fmenu.setVisible(true);
-            setVisible(false);
+//            FormMenuVendedor Fmenu =  new FormMenuVendedor();
+//            Fmenu.setVisible(true);
+//            setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
-
-    private void txtTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelActionPerformed
-
-    private void jComboTDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTDActionPerformed
-        // TODO add your handling code here:
-        if(c){
-        ctTipoDocumento[] miListad = mitdocumento.CrudListaTipoDocumento();
-        mitdocumento = miListad[jComboTD.getSelectedIndex()];
-        
-        btnInsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
-        btnActualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
-        }    
-    }//GEN-LAST:event_jComboTDActionPerformed
 
     private void jComboClActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboClActionPerformed
         // TODO add your handling code here:
-          if(b){
-        tbCliente[] miLista = micliente.CrudListaCliente();
-        micliente = miLista[jComboCl.getSelectedIndex()];
-        
-        txtNumD.setText(" " + micliente.getstrDocumentoIdentidad()); // Entrega el valor en los campos de texto
-        txtPN.setText(" " + micliente.getstrPrimerNombreCliente()); // Entrega el valor en los campos de texto
-        txtSN.setText(" " + micliente.getstrSegundoNombreCliente()); // Entrega el valor en los campos de texto
-        txtPA.setText(" " + micliente.getstrPrimerApellidoCliente()); // Entrega el valor en los campos de texto
-        txtSA.setText(" " + micliente.getstrSegundoApellidoCliente()); // Entrega el valor en los campos de texto
-        txtDir.setText(" " + micliente.getstrDireccionCliente()); // Entrega el valor en los campos de texto
-        txtTel.setText(" " + micliente.getstrTelefonoCliente()); // Entrega el valor en los campos de texto
-        
-        btnInsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
-        btnActualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
-        }
+//          if(b){
+//        Clientes[] miLista = micliente.CrudListaCliente();
+//        micliente = miLista[jComboCl.getSelectedIndex()];
+//        
+//        txtNumD.setText(" " + micliente.getstrDocumentoIdentidad()); // Entrega el valor en los campos de texto
+//        txtPN.setText(" " + micliente.getstrPrimerNombreCliente()); // Entrega el valor en los campos de texto
+//        txtSN.setText(" " + micliente.getstrSegundoNombreCliente()); // Entrega el valor en los campos de texto
+//        txtPA.setText(" " + micliente.getstrPrimerApellidoCliente()); // Entrega el valor en los campos de texto
+//        txtSA.setText(" " + micliente.getstrSegundoApellidoCliente()); // Entrega el valor en los campos de texto
+//        txtDir.setText(" " + micliente.getstrDireccionCliente()); // Entrega el valor en los campos de texto
+//        txtTel.setText(" " + micliente.getstrTelefonoCliente()); // Entrega el valor en los campos de texto
+//        
+//        btnInsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
+//        btnActualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
+//        }
     }//GEN-LAST:event_jComboClActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
 
-        micliente.CrudActualizarCliente(micliente.getintIdCliente(),mitdocumento.getintIdTipoDocumento(),
-                txtNumD.getText(),txtPN.getText(), txtSN.getText(), txtPA.getText(),txtSA.getText(),txtDir.getText(),
-                txtTel.getText()); //Se importa el método y los parámetros necesarios
-        
-
-        jComboTD.setSelectedIndex(micliente.getintTipoDocumentoCliente());
-        txtNumD.setText(micliente.getstrDocumentoIdentidad()); // Entrega el valor en los campos de texto
-        txtPN.setText(micliente.getstrPrimerNombreCliente()); // Entrega el valor en los campos de texto
-        txtSN.setText(micliente.getstrSegundoNombreCliente()); // Entrega el valor en los campos de texto
-        txtPA.setText(micliente.getstrPrimerApellidoCliente()); // Entrega el valor en los campos de texto
-        txtSA.setText(micliente.getstrSegundoApellidoCliente()); // Entrega el valor en los campos de texto
-        txtDir.setText(micliente.getstrDireccionCliente()); // Entrega el valor en los campos de texto
-        txtTel.setText(micliente.getstrTelefonoCliente()); // Entrega el valor en los campos de texto
-        
-        btnInsertar.setEnabled(false); // Se mantiene el botón insertar como falso
+//        micliente.CrudActualizarCliente(micliente.getintIdCliente(),mitdocumento.getintIdTipoDocumento(),
+//                txtNumD.getText(),txtPN.getText(), txtSN.getText(), txtPA.getText(),txtSA.getText(),txtDir.getText(),
+//                txtTel.getText()); //Se importa el método y los parámetros necesarios
+//        
+//
+//        jComboTD.setSelectedIndex(micliente.getintTipoDocumentoCliente());
+//        txtNumD.setText(micliente.getstrDocumentoIdentidad()); // Entrega el valor en los campos de texto
+//        txtPN.setText(micliente.getstrPrimerNombreCliente()); // Entrega el valor en los campos de texto
+//        txtSN.setText(micliente.getstrSegundoNombreCliente()); // Entrega el valor en los campos de texto
+//        txtPA.setText(micliente.getstrPrimerApellidoCliente()); // Entrega el valor en los campos de texto
+//        txtSA.setText(micliente.getstrSegundoApellidoCliente()); // Entrega el valor en los campos de texto
+//        txtDir.setText(micliente.getstrDireccionCliente()); // Entrega el valor en los campos de texto
+//        txtTel.setText(micliente.getstrTelefonoCliente()); // Entrega el valor en los campos de texto
+//        
+//        btnInsertar.setEnabled(false); // Se mantiene el botón insertar como falso
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
         b=false; // Se declara la variable booleana como falsa para no realizar la acción
         
-        txtNumD.setText(""); // Entrega el valor en los campos de texto
+        txtgenero.setText(""); // Entrega el valor en los campos de texto
         txtPN.setText(""); // Entrega el valor en los campos de texto
         txtSN.setText(""); // Entrega el valor en los campos de texto
         txtPA.setText(""); // Entrega el valor en los campos de texto
         txtSA.setText(""); // Entrega el valor en los campos de texto
         txtDir.setText(""); // Entrega el valor en los campos de texto
-        txtTel.setText(""); // Entrega el valor en los campos de texto
         txtNumD.setText(""); // Entrega el valor en los campos de texto
 
         btnInsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
         btnActualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
        
         jComboCl.removeAllItems(); //Se limpia el formulario.
-        tbCliente[] miLista =micliente.CrudListaCliente(); 
-         
+//        tbCliente[] miLista =micliente.CrudListaCliente(); 
+      
+//        jComboCl.addItem(miListaCl[intcont].getcons_clie()+" - "+miListaCl[intcont].getnume_iden()
+//        +" - "+ miListaCl[intcont].getprim_nomb()+" - "+ miListaCl[intcont].getsegu_nomb()
+//        +" - "+ miListaCl[intcont].getprim_apel()+" - "+ miListaCl[intcont].getsegu_apel()
+//        +" - "+ miListaCl[intcont].getgene_clie()+" - "+ miListaCl[intcont].getcent_pobl());    
+//            }
+        
+
         // Se crea un for para borrar el formulario y que el jCombo no este vacio
-        for(int intcont=0; intcont < miLista.length; intcont++ ){
-        jComboCl.addItem(miLista[intcont].getintIdCliente()+" - "+miLista[intcont].getintTipoDocumentoCliente()
-         +" - "+ miLista[intcont].getstrDocumentoIdentidad()+" - "+miLista[intcont].getstrPrimerNombreCliente()
-         +" - "+miLista[intcont].getstrSegundoNombreCliente()+" - "+miLista[intcont].getstrPrimerApellidoCliente()
-         +" - "+miLista[intcont].getstrSegundoApellidoCliente()+" - "+miLista[intcont].getstrTelefonoCliente()
-         +" - "+miLista[intcont].getstrDireccionCliente()+""); 
+        for(int intcont=0; intcont < miListaCl.length; intcont++ ){
+        jComboCl.addItem(miListaCl[intcont].getcons_clie()+" - "+miListaCl[intcont].getnume_iden()
+         +" - "+ miListaCl[intcont].getprim_nomb()+" - "+miListaCl[intcont].getsegu_nomb()
+        +" - "+ miListaCl[intcont].getprim_apel()+" - "+ miListaCl[intcont].getsegu_apel()
+        +" - "+ miListaCl[intcont].getgene_clie()+" - "+ miListaCl[intcont].getcent_pobl());  
         jComboCl.setSelectedIndex(0); // Posiciona el jcombo en la posición 0
             }   
         b=true;
@@ -397,21 +366,23 @@ public class Cliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cliente().setVisible(true);
+                new Clientes().setVisible(true);
             }
         });
     }
@@ -422,7 +393,6 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox jComboCl;
-    private javax.swing.JComboBox jComboTD;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -432,18 +402,17 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtDir;
     private javax.swing.JTextField txtNumD;
     private javax.swing.JTextField txtPA;
     private javax.swing.JTextField txtPN;
     private javax.swing.JTextField txtSA;
     private javax.swing.JTextField txtSN;
-    private javax.swing.JTextField txtTel;
     // End of variables declaration//GEN-END:variables
 }
