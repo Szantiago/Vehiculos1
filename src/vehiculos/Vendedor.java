@@ -14,7 +14,7 @@ public class Vendedor {
     
     private Conexion conMicon;
     
-    Vendedor(){
+    public Vendedor(){
     }
     
     Vendedor(int cCons_Vend ,String cNom_Vend, int cTele_Vend, int cCons_Cons){
