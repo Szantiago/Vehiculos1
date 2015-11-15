@@ -19,7 +19,7 @@ public class Conexion {
     public String password = "1234";
     
   
-    private String strIp = "localhost" ;                       	//Dirección IP del servidor donde este la base de datos
+    private String strIp = "192.168.88.14" ;                       	//Dirección IP del servidor donde este la base de datos
     private String strPuerto = "5432" ;                             //Puerto del servidor de bases de datos
     private String strTipo = "postgresql" ;                               //Tipo de Servidor
     private String strBD = "bd" ;                                	//Nombre de la base de datos
