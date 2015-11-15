@@ -1,6 +1,7 @@
 
 package Formularios;
 import vehiculos.Cliente;
+import vehiculos.Cent_Pobl;
 /**
  * UNIVERSIDAD DE CUNDINAMARCA
  * Ingenieria de Sistemas
@@ -15,9 +16,14 @@ import vehiculos.Cliente;
  * 
  */
 public class Clientes extends javax.swing.JFrame {
-    Cliente micliente = new Cliente(); //Crear constructor vacio de la clase tbCliente
-    Cliente[] miListaCl = micliente.CrudListaCliente();
+    Cliente mClientes = new Cliente(); //Crear constructor vacio de la clase tbCliente
+    Cliente[] miListaCl = mClientes.CrudListaCliente();
+
+    Cent_Pobl mCent_Pobl = new Cent_Pobl();
+    Cent_Pobl[] miListaCP = mCent_Pobl.CrudListaCent_Pobl();
+    
     boolean b;
+    boolean c;
     /**
      * Creates new form FormCliente
      */
@@ -25,23 +31,24 @@ public class Clientes extends javax.swing.JFrame {
         
         initComponents();
         this.setLocation(300,120);//En esta instancia(this)cambiar(set)la posición(Location) 
+        txtCen_Pob.setVisible(false);
 //.................................
         //Contador del formulario  
-        //            cons_clie
-//            nume_iden
-//            prim_nomb
-//            segu_nomb 
-//            prim_apel 
-//            segu_apel 
-//            gene_clie 
-//            c  
+
         b=true;
+        
         for(int intcont=0; intcont < miListaCl.length; intcont++ ){
         jComboCl.addItem(miListaCl[intcont].getcons_clie()+" - "+miListaCl[intcont].getnume_iden()
         +" - "+ miListaCl[intcont].getprim_nomb()+" - "+ miListaCl[intcont].getsegu_nomb()
         +" - "+ miListaCl[intcont].getprim_apel()+" - "+ miListaCl[intcont].getsegu_apel()
         +" - "+ miListaCl[intcont].getgene_clie()+" - "+ miListaCl[intcont].getcent_pobl());    
             }
+        
+        for(int intcont=0; intcont < miListaCP.length-1; intcont++ ){
+        cbxcen_pob.addItem(miListaCP[intcont].getcodi_pobl()+" - "+miListaCP[intcont].getnomb_pobl());  
+        cbxcen_pob.setSelectedIndex(0);
+            }
+        
         
         
     }
@@ -57,7 +64,6 @@ public class Clientes extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jComboCl = new javax.swing.JComboBox();
-        jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtNumD = new javax.swing.JTextField();
@@ -73,22 +79,22 @@ public class Clientes extends javax.swing.JFrame {
         txtSA = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
-        txtDir = new javax.swing.JTextField();
+        txtCen_Pob = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         btnInsertar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        cbxgen = new javax.swing.JComboBox<>();
+        cbxcen_pob = new javax.swing.JComboBox<>();
+        txtGen = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 204, 255));
         jLabel1.setText("Cliente");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 23, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         jComboCl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,82 +102,75 @@ public class Clientes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboCl, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 20, 204, -1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 51, 497, 10));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 204, 255));
         jLabel2.setText("Género");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 204, 255));
         jLabel3.setText("# Documento");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
 
         txtNumD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumDActionPerformed(evt);
             }
         });
-        getContentPane().add(txtNumD, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 130, -1));
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 105, 497, 10));
+        getContentPane().add(txtNumD, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 130, -1));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 497, 10));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 204, 255));
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Primer nombre");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 124, -1, -1));
-        getContentPane().add(txtPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 121, 150, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        getContentPane().add(txtPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 150, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 204, 255));
         jLabel5.setText("Segundo nombre");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(293, 124, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, -1, -1));
 
         txtSN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSNActionPerformed(evt);
             }
         });
-        getContentPane().add(txtSN, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 121, 128, -1));
-        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 159, 497, 10));
+        getContentPane().add(txtSN, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 128, -1));
+        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 497, 10));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(204, 204, 255));
         jLabel6.setText("Primer apellido");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         txtPA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPAActionPerformed(evt);
             }
         });
-        getContentPane().add(txtPA, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 175, 150, -1));
+        getContentPane().add(txtPA, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 150, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(204, 204, 255));
         jLabel7.setText("Segundo Apellido");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(293, 178, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, -1, -1));
 
         txtSA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSAActionPerformed(evt);
             }
         });
-        getContentPane().add(txtSA, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 175, 127, -1));
-        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 213, 497, 10));
+        getContentPane().add(txtSA, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 127, -1));
+        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 497, 10));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(204, 204, 255));
         jLabel8.setText("Centro Poblado");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 232, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, -1, -1));
 
-        txtDir.addActionListener(new java.awt.event.ActionListener() {
+        txtCen_Pob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDirActionPerformed(evt);
+                txtCen_PobActionPerformed(evt);
             }
         });
-        getContentPane().add(txtDir, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 149, -1));
-        getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 267, 497, 10));
+        getContentPane().add(txtCen_Pob, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 10, 10));
+        getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 497, 10));
 
         btnInsertar.setText("Insertar");
         btnInsertar.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +178,7 @@ public class Clientes extends javax.swing.JFrame {
                 btnInsertarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnInsertar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 288, -1, -1));
+        getContentPane().add(btnInsertar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -187,7 +186,7 @@ public class Clientes extends javax.swing.JFrame {
                 btnActualizarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 288, -1, -1));
+        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -195,7 +194,7 @@ public class Clientes extends javax.swing.JFrame {
                 btnLimpiarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 288, -1, -1));
+        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -203,11 +202,29 @@ public class Clientes extends javax.swing.JFrame {
                 btnVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(464, 288, -1, -1));
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, -1, -1));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Formularios/fondo-rojo-5634.jpg"))); // NOI18N
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 540, 330));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 150, -1));
+        cbxgen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
+        cbxgen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxgenActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbxgen, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 80, -1));
+
+        cbxcen_pob.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxcen_pobActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbxcen_pob, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 180, -1));
+
+        txtGen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtGenActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtGen, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 10, 10));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -228,25 +245,28 @@ public class Clientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSAActionPerformed
 
-    private void txtDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDirActionPerformed
+    private void txtCen_PobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCen_PobActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDirActionPerformed
+        txtCen_Pob.setVisible(false);
+    }//GEN-LAST:event_txtCen_PobActionPerformed
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         // TODO add your handling code here:
         
-        micliente.CrudInsertarCliente( txtNumD.getText(),
+        mClientes.CrudInsertarCliente( txtNumD.getText(),
                     txtPN.getText(), txtSN.getText(), txtPA.getText(), 
-                    txtSA.getText(), txtTel.getText(), txtDir.getText()); //Se importa el método y los parámetros necesarios
+                    txtSA.getText(), txtGen.getText(), txtCen_Pob.getText()); //Se importa el método y los parámetros necesarios
         
-        jComboTD.setSelectedIndex(micliente.getcons_clie());
-        txtgenero.setText(""); // Entrega el valor en los campos de texto
+        jComboCl.setSelectedIndex(mClientes.getcons_clie());
+        
+        txtNumD.setText(""); // Entrega el valor en los campos de texto
         txtPN.setText(""); // Entrega el valor en los campos de texto
         txtSN.setText(""); // Entrega el valor en los campos de texto
         txtPA.setText(""); // Entrega el valor en los campos de texto
         txtSA.setText(""); // Entrega el valor en los campos de texto
-        txtDir.setText(""); // Entrega el valor en los campos de texto
-        txtNumD.setText(""); // Entrega el valor en los campos de texto
+        txtGen.setText("");// Entrega el valor en los campos de texto
+        txtCen_Pob.setText(""); // Entrega el valor en los campos de texto
+        
 
         btnActualizar.setEnabled(false); // Se mantiene el botón actualizar como falso
     }//GEN-LAST:event_btnInsertarActionPerformed
@@ -280,34 +300,33 @@ public class Clientes extends javax.swing.JFrame {
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
 
-//        micliente.CrudActualizarCliente(micliente.getintIdCliente(),mitdocumento.getintIdTipoDocumento(),
-//                txtNumD.getText(),txtPN.getText(), txtSN.getText(), txtPA.getText(),txtSA.getText(),txtDir.getText(),
-//                txtTel.getText()); //Se importa el método y los parámetros necesarios
-//        
-//
-//        jComboTD.setSelectedIndex(micliente.getintTipoDocumentoCliente());
-//        txtNumD.setText(micliente.getstrDocumentoIdentidad()); // Entrega el valor en los campos de texto
-//        txtPN.setText(micliente.getstrPrimerNombreCliente()); // Entrega el valor en los campos de texto
-//        txtSN.setText(micliente.getstrSegundoNombreCliente()); // Entrega el valor en los campos de texto
-//        txtPA.setText(micliente.getstrPrimerApellidoCliente()); // Entrega el valor en los campos de texto
-//        txtSA.setText(micliente.getstrSegundoApellidoCliente()); // Entrega el valor en los campos de texto
-//        txtDir.setText(micliente.getstrDireccionCliente()); // Entrega el valor en los campos de texto
-//        txtTel.setText(micliente.getstrTelefonoCliente()); // Entrega el valor en los campos de texto
-//        
-//        btnInsertar.setEnabled(false); // Se mantiene el botón insertar como falso
+        mClientes.CrudActualizarCliente(mClientes.getcons_clie(),txtNumD.getText(),txtPN.getText(), txtSN.getText(), 
+                txtPA.getText(),txtSA.getText(),txtGen.getText(),txtCen_Pob.getText()); //Se importa el método y los parámetros necesarios
+        
+
+        txtNumD.setText(""); // Entrega el valor en los campos de texto
+        txtPN.setText(""); // Entrega el valor en los campos de texto
+        txtSN.setText(""); // Entrega el valor en los campos de texto
+        txtPA.setText(""); // Entrega el valor en los campos de texto
+        txtSA.setText(""); // Entrega el valor en los campos de texto
+        txtGen.setText("");// Entrega el valor en los campos de texto
+        txtCen_Pob.setText(""); // Entrega el valor en los campos de texto
+        
+        btnInsertar.setEnabled(false); // Se mantiene el botón insertar como falso
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
         b=false; // Se declara la variable booleana como falsa para no realizar la acción
         
-        txtgenero.setText(""); // Entrega el valor en los campos de texto
+        txtNumD.setText(""); // Entrega el valor en los campos de texto
         txtPN.setText(""); // Entrega el valor en los campos de texto
         txtSN.setText(""); // Entrega el valor en los campos de texto
         txtPA.setText(""); // Entrega el valor en los campos de texto
         txtSA.setText(""); // Entrega el valor en los campos de texto
-        txtDir.setText(""); // Entrega el valor en los campos de texto
-        txtNumD.setText(""); // Entrega el valor en los campos de texto
+        txtGen.setText(""); // Entrega el valor en los campos de texto
+        txtCen_Pob.setText(""); // Entrega el valor en los campos de texto
+        
 
         btnInsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
         btnActualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
@@ -337,17 +356,30 @@ public class Clientes extends javax.swing.JFrame {
         btnInsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
         btnActualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
        
-        jComboTD.removeAllItems(); //Se limpia el formulario.
-        ctTipoDocumento[] miListad =mitdocumento.CrudListaTipoDocumento(); 
+        cbxcen_pob.removeAllItems(); //Se limpia el formulario.
          
         // Se crea un for para borrar el formulario y que el jCombo no este vacio
-        for(int intcont=0; intcont < miListad.length; intcont++ ){
-        jComboTD.addItem(miListad[intcont].getintIdTipoDocumento()+" - "+miListad[intcont].getstrNombreTipoDocumento()+" - "
-         + miListad[intcont].getstrSiglasTipoDocumento());  
-        jComboTD.setSelectedIndex(0); // Posiciona el jcombo en la posició 0
+        for(int intcont=0; intcont < miListaCP.length; intcont++ ){
+        cbxcen_pob.addItem(miListaCP[intcont].getcodi_pobl()+" - "+miListaCP[intcont].getnomb_pobl());  
+        cbxcen_pob.setSelectedIndex(0); // Posiciona el jcombo en la posició 0
             }
        c=true;
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void cbxcen_pobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxcen_pobActionPerformed
+        // TODO add your handling code here:
+        txtCen_Pob.setText(cbxcen_pob.getSelectedItem().toString());
+    }//GEN-LAST:event_cbxcen_pobActionPerformed
+
+    private void cbxgenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxgenActionPerformed
+        // TODO add your handling code here:
+        txtGen.setText(cbxgen.getSelectedItem().toString());
+    }//GEN-LAST:event_cbxgenActionPerformed
+
+    private void txtGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGenActionPerformed
+        // TODO add your handling code here:
+        txtGen.setVisible(false);
+    }//GEN-LAST:event_txtGenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -378,6 +410,18 @@ public class Clientes extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -392,9 +436,10 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JButton btnInsertar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JComboBox<String> cbxcen_pob;
+    private javax.swing.JComboBox<String> cbxgen;
     private javax.swing.JComboBox jComboCl;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -402,13 +447,12 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField txtDir;
+    private javax.swing.JTextField txtCen_Pob;
+    private javax.swing.JTextField txtGen;
     private javax.swing.JTextField txtNumD;
     private javax.swing.JTextField txtPA;
     private javax.swing.JTextField txtPN;

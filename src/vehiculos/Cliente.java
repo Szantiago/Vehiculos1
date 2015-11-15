@@ -132,7 +132,7 @@ import javax.swing.JOptionPane;
                 Conexion IC = new Conexion();
                 
                 int intAux;
-                intAux = IC.queryUpdate("INSERT INTO `tabl_clie`(nume_iden, "
+                intAux = IC.queryUpdate("INSERT INTO tabl_clie(nume_iden, "
                         + "prim_nomb, segu_nomb, prim_apel, segu_apel, "
                         + "gene_clie, cent_pobl) "
                         + "VALUES (" + Inume_iden +",'"+ Iprim_nomb 
@@ -171,8 +171,8 @@ import javax.swing.JOptionPane;
                     String Ngene_clie, String Ncent_pobl){
                 Conexion AC = new Conexion();
 
-                String[][]strResultado = AC.resultadoQuery(AC.queryConsulta("SELECT `cons_clie`, `nume_iden`, "
-                        + "`prim_nomb`, `segu_nomb`, `prim_apel`, `segu_apel`,`gene_clie`, `cent_pobl` FROM `tabl_clie` WHERE cons_clie = " + Ncons_clie + ";" ));
+                String[][]strResultado = AC.resultadoQuery(AC.queryConsulta("SELECT cons_clie, nume_iden, "
+                        + "prim_nomb, segu_nomb, prim_apel, segu_apel,gene_clie, cent_pobl FROM tabl_clie WHERE cons_clie = " + Ncons_clie + ";" ));
                 if (strResultado[0][0]!= null){
                 AC.queryUpdate("UPDATE tabl_clie SET nume_iden = " + Nnume_iden + ", "
                         + "prim_nomb = '" + Nprim_nomb + "', segu_nomb = '" 
@@ -210,7 +210,7 @@ import javax.swing.JOptionPane;
             Conexion CC = new Conexion();
 
             try{
-            String [][]strRes = CC.resultadoQuery(CC.queryConsulta("SELECT COUNT(`cons_clie`) "
+            String [][]strRes = CC.resultadoQuery(CC.queryConsulta("SELECT COUNT(cons_clie) "
                 + "AS TANTOS FROM tabl_clie;"));
             
             intTama = Integer.parseInt(strRes[0][0]);
