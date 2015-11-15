@@ -4,19 +4,19 @@ package Formularios;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 /**
- * /**
  * UNIVERSIDAD DE CUNDINAMARCA
  * Ingenieria de Sistemas
- * Estudiantes: - Ivan Corredor Briceño
- *              - Víctor Pinzón Rodríguez
+ * Estudiantes: - Leidy Arevalo
+ *              - Santiago Lozano
+ *              - Victor Pinzon
  * 
- * Profesor: Jorge Páramo Fonseca
+ * Profesor: Diego Arce
  * 
- * @author Víctor Pinzón
+ * @author 
  * @version 1.0
  * 
- * Es el formulario superautos y la tabla tbVehiculo
  */
+
 public class Vehiculo extends javax.swing.JFrame {
     tbVehiculo mivehiculo = new tbVehiculo(); //Crear constructor vacio de la clase tbVehiculo
     tbVehiculo [] miListaVh =  mivehiculo.CrudListaVehiculo();
