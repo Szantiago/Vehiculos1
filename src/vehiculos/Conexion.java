@@ -22,7 +22,7 @@ public class Conexion {
     private String strIp = "localhost" ;                       	//Dirección IP del servidor donde este la base de datos
     private String strPuerto = "5432" ;                             //Puerto del servidor de bases de datos
     private String strTipo = "postgresql" ;                               //Tipo de Servidor
-    private String strBD = "taller1" ;                                	//Nombre de la base de datos
+    private String strBD = "bd" ;                                	//Nombre de la base de datos
     private String strClassForName = "org.postgresql.Driver" ;          				//Para crear la clase por nombre segun el tipo y el driver
     private String strUrl;
     
@@ -163,11 +163,11 @@ public class Conexion {
         
         
 
-        String R[][] = C.resultadoQuery(C.queryConsulta("select cedu_clie, prim_nomb from clientes where cons_clie = 2;"));
+        String R[][] = C.resultadoQuery(C.queryConsulta("select nume_iden, prim_nomb from tabl_clie where cons_clie = 2;"));
         System.out.print("\n: " + R[0][0] + " - " + R[0][1] + "\n");
         
         
-        C.queryUpdate("UPDATE clientes SET prim_nomb = 'Andres' WHERE cedu_clie::integer = '1002396' ;");
+        C.queryUpdate("UPDATE tabl_clie SET prim_nomb = 'Andres' WHERE nume_iden::integer = '1002396' ;");
         
     }
     }
