@@ -178,7 +178,7 @@ import javax.swing.JOptionPane;
                         + "prim_nomb = '" + Nprim_nomb + "', segu_nomb = '" 
                         + Nsegu_nomb + "', prim_apel = '" + Nprim_apel 
                         + "', segu_apel = '" + Nsegu_apel + "', gene_clie = '" 
-                        + Ngene_clie + "', cent_pobl = '" + Ncent_pobl + "WHERE id_usuario = " + Ncons_clie + ";");
+                        + Ngene_clie + "', cent_pobl = '" + Ncent_pobl + "' WHERE cons_clie = " + Ncons_clie + ";");
                         
 
                 nume_iden = Nnume_iden;
@@ -218,7 +218,7 @@ import javax.swing.JOptionPane;
             
             Cliente [] mClientes = new Cliente[intTama]; //Constructor Arreglo
                         
-            strRes = CC.resultadoQuery(CC.queryConsulta("SELECT cons_clie, nume_iden, prim_nomb, segu_nomb, prim_apel, segu_apel, gene_clie, cent_pobl FROM tabl_clie "));
+            strRes = CC.resultadoQuery(CC.queryConsulta("SELECT cons_clie, nume_iden, prim_nomb, segu_nomb, prim_apel, segu_apel, gene_clie, cent_pobl FROM tabl_clie order by cons_clie"));
 
             for (intCont=0; intCont<(intTama); intCont++){
                     Cliente tabl_clieAux = new Cliente (Integer.parseInt(strRes[intCont][0]), 
@@ -239,7 +239,21 @@ import javax.swing.JOptionPane;
             System.out.print(ex);
             return null;
             }
-        }              
+    }
+            
+       	/** para eliminar un cliente filtrando por el concecutivo
+	 * @param Econs_clie	 */
+            public void CrudEliminarCliente(int Econs_clie){
+              
+                Conexion EC = new Conexion();
+                String[][]strResultado = EC.resultadoQuery(EC.queryConsulta("DELETE FROM tabl_clie WHERE cons_clie= " + Econs_clie + ";" ));
+
+                String strMensaje = "se ELIMINÓ el cliente";
+                JOptionPane.showMessageDialog(null, strMensaje,  "ELIMINAR CLIENTE", 2);
+
+            }     
+            
+                      
             
 //==========================================================================================================================
 // Main para hacer pruebas             
