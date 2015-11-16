@@ -24,6 +24,12 @@ public class Cons {
         
         public Cons (){}
         
+        public Cons(int Ccons_cons, String Cnomb_cons){
+        cons_cons = Ccons_cons;
+        nomb_cons=Cnomb_cons;
+        
+        }
+        
         public Cons(int Ccons_muni, String Ccodi_pobl, String Cnombre_muni){
         cons_muni = Ccons_muni;
         codi_pobl=Ccodi_pobl;
@@ -190,20 +196,20 @@ public class Cons {
             try
             {
                 String [][]strReg = conMiconexion.resultadoQuery(conMiconexion.queryConsulta( 
-                                                "SELECT COUNT(nomb_cons) AS TAL FROM tabl_cons ;"));
+                                                "SELECT COUNT(cons_cons) AS TAL FROM tabl_cons ;"));
 
                 intTama = Integer.parseInt(strReg[0][0]);
                 //System.out.print("\n el tamaño es:" + intTama + "\n");
                 
                 strReg = conMiconexion.resultadoQuery(conMiconexion.queryConsulta(
-                        "SELECT cons_cons, nomb_cons, dire_cons FROM tabl_cons  ORDER BY nomb_cons;"));                
+                        "SELECT cons_cons, nomb_cons FROM tabl_cons ORDER BY cons_cons;"));                
 
                 Cons [] Lista = new Cons[intTama];
 
                 for (intCont = 0; intCont <(intTama); intCont++)
                 {
                     Cons ConsecioAux = new Cons (Integer.parseInt(strReg[intCont][0]), 
-                            strReg[intCont][1],strReg[intCont][2]);
+                            strReg[intCont][1]);
                                         
                     Lista[intCont] = ConsecioAux;
 
@@ -245,7 +251,7 @@ public class Cons {
         
         for(int intCont=0; intCont < lisTabla.length; intCont++)
         {
-            System.out.print("\n" + lisTabla[intCont].getnomb_cons()+ lisTabla[intCont].getcodi_pobl()+lisTabla[intCont].gettele_cons()+lisTabla[intCont].getdire_cons());
+            System.out.print("\n" + lisTabla[intCont].getcons_cons() + " - " +lisTabla[intCont].getnomb_cons());
         }
     }
 }
