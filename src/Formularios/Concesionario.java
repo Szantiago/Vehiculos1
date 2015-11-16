@@ -14,7 +14,7 @@ import vehiculos.*;
 public class Concesionario extends javax.swing.JFrame {
 
     
-   Cons miConcesonario =new Cons();
+   Cons miConcesionario =new Cons();
     
     
     /**
@@ -22,7 +22,7 @@ public class Concesionario extends javax.swing.JFrame {
      */
     public Concesionario() {
         initComponents();
-        Cons[] miLista = miConcesonario.crudListaPoblado();             
+        Cons[] miLista = miConcesionario.crudListaPoblado();             
         for(int cont=0; cont < miLista.length; cont++){
         cbxpoblado.addItem(miLista[cont].getcodi_pobl()+ "-"+miLista[cont].getnombre_muni()+""+miLista[cont].getnomb_cons());
         }
@@ -54,6 +54,7 @@ public class Concesionario extends javax.swing.JFrame {
         btneliminar = new javax.swing.JButton();
         txtpoblado = new javax.swing.JTextField();
         btnbuscar = new javax.swing.JButton();
+        txtID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,8 +129,11 @@ public class Concesionario extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnbuscar)
-                                    .addComponent(txtnombcons, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(txtnombcons, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnbuscar)))))))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -137,13 +141,15 @@ public class Concesionario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addGap(34, 34, 34)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnbuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtnombcons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnbuscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cbxpoblado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -157,12 +163,12 @@ public class Concesionario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btncrear)
                     .addComponent(btnmodificar)
                     .addComponent(btneliminar))
-                .addContainerGap())
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -170,7 +176,7 @@ public class Concesionario extends javax.swing.JFrame {
 
     private void btncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncrearActionPerformed
        
-       miConcesonario.crudCrearConsencionario(txtnombcons.getText(),txtpoblado.getText(),Integer.parseInt(txttel.getText()),txtdireccion.getText());
+       miConcesionario.crudCrearConsencionario(txtnombcons.getText(),txtpoblado.getText(),Integer.parseInt(txttel.getText()),txtdireccion.getText());
        txtnombcons.setText("");
        txtpoblado.setText("");
        txttel.setText("");
@@ -179,14 +185,13 @@ public class Concesionario extends javax.swing.JFrame {
        
 //       btnmodificar.setEnabled(false); 
 //       btneliminar.setEnabled(false); 
-       
-       
-       
-        
+      
     }//GEN-LAST:event_btncrearActionPerformed
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
-        // TODO add your handling code here:
+        miConcesionario.crudActualizarConsencionario(txtID.getText()),txtnombcons.getText(),txtpoblado.getText(),Integer.parseInt(txttel.getText()),txtdireccion.getText());
+        txtID.setText(Integer.parseInt(miConcesonario.getcons_cons());
+        
     }//GEN-LAST:event_btnmodificarActionPerformed
 
     private void cbxpobladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxpobladoActionPerformed
@@ -194,11 +199,15 @@ public class Concesionario extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxpobladoActionPerformed
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
-//       btncrear.setEnabled(false);
-//       miConcesonario.crudMostrarConsecionario((txtnombcons.getText()));
-//        txtnombcons.setText(miConcesonario.getnomb_cons());
-//        txttel.setText("");
-//        
+       
+       miConcesionario.crudMostrarConsecionario((Integer.parseInt(txtID.getText())));
+        txtnombcons.setText(miConcesionario.getnomb_cons());
+        txttel.setText(""+miConcesionario.gettele_cons());
+        txtdireccion.setText(miConcesionario.getdire_cons());
+        txtpoblado.setText("");
+        
+        btncrear.setEnabled(false);
+        
         
     }//GEN-LAST:event_btnbuscarActionPerformed
 
@@ -250,6 +259,7 @@ public class Concesionario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtdireccion;
     private javax.swing.JTextField txtnombcons;
     private javax.swing.JTextField txtpoblado;

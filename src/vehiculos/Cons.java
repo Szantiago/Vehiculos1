@@ -39,7 +39,9 @@ public class Cons {
            
 	}
         
+        //<Metodos get y set>
         
+    
          public int getcons_cons(){
 		return cons_cons;
          }
@@ -66,6 +68,11 @@ public class Cons {
          public String getnombre_muni (){
                 return nombre_muni;
          }
+         
+          public void setnombre_muni(String newVal){
+		nombre_muni = newVal;
+           } 
+          
          public void setcodi_pobl(String newVal){
 		nomb_cons = newVal;
            }      
@@ -94,6 +101,7 @@ public class Cons {
 		cons_conse = newVal;
 	}
          
+         
         public void crudCrearConsencionario(String strnomb_cons, String strcodi_pobl, int Inttele_cons, String strdire_cons){
         
             conMiconexion = new Conexion();
@@ -106,7 +114,7 @@ public class Cons {
             JOptionPane.showMessageDialog (null, strMensaje,  "Crear Consecionario ", 2);   
          }
         
-        public void crudActualizarConsencionario(String strnomb_cons, String intcodi_pobl, int Inttele_cons, String strdire_cons, int Intcons_cons) {
+        public void crudActualizarConsencionario(String strnomb_cons, String strcodi_pobl, int Inttele_cons, String strdire_cons, int Intcons_cons) {
 
             conMiconexion = new Conexion();
 	   String [][]strReg = conMiconexion.resultadoQuery(conMiconexion.queryConsulta("SELECT nomb_cons, codi_pobl, tele_cons, dire_cons, cons_cons FROM tabl_cons WHERE cons_cons =" + Intcons_cons +  ";"));
@@ -114,12 +122,12 @@ public class Cons {
 	   {
                
                conMiconexion.queryUpdate("UPDATE tabl_cons SET  nomb_cons= "
-                       + strnomb_cons + ", codi_pobl= "+ intcodi_pobl
+                       + strnomb_cons + ", codi_pobl= "+ strcodi_pobl
                        + ", tele_cons= '"+ Inttele_cons+ "', dire_cons= '"+ strdire_cons +  "' WHERE  cons_cons = " + Intcons_cons +";");
                
                 cons_conse = Intcons_cons;
                 nomb_cons = strnomb_cons;
-                codi_pobl= intcodi_pobl;
+                codi_pobl= strcodi_pobl;
                 tele_cons = Inttele_cons;
                 dire_cons = strdire_cons;
         
@@ -137,15 +145,20 @@ public class Cons {
             
 	}
         
-        public void crudMostrarConsecionario(String nombre_cons){
+        public void crudMostrarConsecionario(int consecutivo_cons){
 
             conMiconexion = new Conexion();
 
             String [][]strReg = conMiconexion.resultadoQuery(conMiconexion.queryConsulta(
-                                    "SELECT nomb_cons FROM tabl_conss WHERE  nomb_cons = " + nombre_cons +  ";")); 
+                                    "SELECT  cons_cons,nomb_cons,codi_pobl, tele_cons,dire_cons FROM tabl_cons WHERE  cons_cons = " + consecutivo_cons +  ";")); 
            
-            nombre_cons = strReg[0][0];
-            //strNombre = strReg[0][1];
+            cons_cons = Integer.parseInt(strReg[0][0]);
+            
+            nomb_cons = strReg[0][1];
+            
+            codi_pobl = strReg[0][2];
+            tele_cons = Integer.parseInt(strReg[0][3]);
+            dire_cons = strReg[0][4];
             
 	}
         
