@@ -189,8 +189,9 @@ public class Concesionario extends javax.swing.JFrame {
     }//GEN-LAST:event_btncrearActionPerformed
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
-        miConcesionario.crudActualizarConsencionario(txtID.getText()),txtnombcons.getText(),txtpoblado.getText(),Integer.parseInt(txttel.getText()),txtdireccion.getText());
-        txtID.setText(Integer.parseInt(miConcesonario.getcons_cons());
+        int teleClie =Integer.parseInt(txttel.getText());
+        miConcesionario.crudActualizarConsencionario(txtnombcons.getText(),txtpoblado.getText(),teleClie,txtdireccion.getText(), Integer.parseInt(txtID.getText()));
+        txtID.setText(""+miConcesionario.getcons_cons());
         
     }//GEN-LAST:event_btnmodificarActionPerformed
 
