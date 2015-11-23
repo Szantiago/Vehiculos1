@@ -139,21 +139,7 @@ public class Vehiculo {
             }
             
 
-    //Para crear registros en la tabla tabl_vehi       
-    public void CrudInsertarVehiculo(int Icons_cons, String Imarc_vehi, String Imode_vehi, String Iline_vehi, String Iplac_vehi,
-            String Icolo_vehi, String Iestado) {
-
-        Conexion IC = new Conexion();
-
-        int intAux;
-        intAux = IC.queryUpdate("INSERT INTO tabl_vehi (cons_cons"
-                + ",marc_vehi, mode_vehi, line_vehi, plac_vehi, colo_vehi, estado) "
-                + "VALUES (" + Icons_cons + ",'" + Imarc_vehi
-                + "','" + Imode_vehi + "','"
-                + Iline_vehi + "','" + Iplac_vehi + "','"
-                + Icolo_vehi + "','" + Iestado + "')");
-        JOptionPane.showMessageDialog(null, "Se creo el registro con exito", "MENSAJE", 2);
-    }
+    
 
 
 //...............................................................................

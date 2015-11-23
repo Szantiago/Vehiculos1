@@ -63,7 +63,7 @@ public class Vendedor {
 
             conMicon = new Conexion();
             
-            conMicon.queryUpdate("INSERT INTO tabl_vend (cons_vend, nomb_vend, tel_vend, cons_cons, estado) "
+            conMicon.queryUpdate("INSERT INTO tabl_vend (nom_vend, tele_vend, cons_cons, estado) "
                     + "VALUES( '" + nom_CVend +"','"+tele_CVend+"','"+cons_CCons +"','"+cestado+ "');");
 
             String strMensaje = "Se creo el vendedor con éxito";
@@ -148,14 +148,15 @@ public class Vendedor {
            
 	   if(strReg[0][0] != null)
 	   {
-                conMicon.queryUpdate("UPDATE ct_epss SET nom_vend =  '" + nom_CVend +" , tele_vend =  '" 
-                        + tele_CVend+" , cons_cons =  '" + cons_CCons +" , estado =  '" + Cestado
+                conMicon.queryUpdate("UPDATE tabl_vend SET nom_vend =  '" + nom_CVend +"' , tele_vend =  " 
+                        + tele_CVend+" , cons_cons =  " + cons_CCons +" , estado =  '" + Cestado
                         + "' WHERE  cons_vend = " + cons_CVend + ";");
                 
-               cons_Vend = cons_CVend;
+               
                nom_Vend=nom_CVend;
                tele_Vend=tele_CVend;
                cons_Cons=cons_CCons;
+               cons_Vend = cons_CVend;
                estado=Cestado;
                
                String strMensaje = "Se modifico el vendedor con éxito";
@@ -175,11 +176,6 @@ public class Vendedor {
     public static void main(String[] args) {
         Conexion CC = new Conexion();
         Vendedor miObjeto = new Vendedor();
-        
-        
-        //Prueba crear 
-        //miObjeto.crudCrearVendedor("Andres Ernandez",8877738,1);
-        //miObjeto.crudEliminVendedor(5);
         
         
         Vendedor[] lisTabla = miObjeto.crudListaVend();
