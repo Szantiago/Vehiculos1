@@ -59,7 +59,7 @@ public class FormVehiculo extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboVh = new javax.swing.JComboBox<String>();
+        jComboVh = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         txtmarca = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -75,9 +75,9 @@ public class FormVehiculo extends javax.swing.JFrame {
         btnlimpiar = new javax.swing.JButton();
         btnvolver = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jComboEstado = new javax.swing.JComboBox<String>();
+        jComboEstado = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jComboC = new javax.swing.JComboBox<String>();
+        jComboC = new javax.swing.JComboBox<>();
         txtestado = new javax.swing.JTextField();
         txtbuscar = new javax.swing.JTextField();
         btnbuscar = new javax.swing.JButton();
@@ -152,7 +152,7 @@ public class FormVehiculo extends javax.swing.JFrame {
 
         jLabel7.setText("Estado");
 
-        jComboEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
+        jComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         jComboEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboEstadoActionPerformed(evt);
@@ -256,12 +256,13 @@ public class FormVehiculo extends javax.swing.JFrame {
                     .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnbuscar))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel7)
-                    .addComponent(jComboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboVh, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboVh, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel7)
+                        .addComponent(jComboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -376,7 +377,7 @@ public class FormVehiculo extends javax.swing.JFrame {
         e.setVisible(true);
         h.setVisible(false);
         setVisible(false);
-        mivehiculo.CrudActualizarVehiculo(Integer.parseInt(txtbuscar.getText()), jComboC.getSelectedIndex(),
+        mivehiculo.CrudActualizarVehiculo(jComboVh.getSelectedIndex(), jComboC.getSelectedIndex(),
                 txtmarca.getText(), txtmodelo.getText(), txtlinea.getText(), txtplaca.getText(), txtcolor.getText(), txtestado.getText()); //Se importa el método y los parámetros necesarios
 
         txtconcesionario.setText("");

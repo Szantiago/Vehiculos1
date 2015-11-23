@@ -140,8 +140,8 @@ import javax.swing.JOptionPane;
                 
                 int intAux;
                 intAux = IC.queryUpdate("INSERT INTO tabl_fact(nume_fact, fech_fact, cons_clie, "
-                        + "cons_vend, cons_cons, cons_vehi, estado) VALUES ("+ Inume_fact +","+ Ifech_fact 
-                        +","+ Icons_clie +","+ Icons_vend +","+ Icons_cons +","+ Icons_vehi +","+ Iestado +"')");
+                        + "cons_vend, cons_cons, cons_vehi, estado) "
+                        + "VALUES ("+ Inume_fact +","+ Ifech_fact +","+ Icons_clie +","+ Icons_vend +","+ Icons_cons +","+ Icons_vehi +","+ Iestado +")");
                 JOptionPane.showMessageDialog(null, "Se creo el registro con exito", "MENSAJE", 2);
             }
             
@@ -173,14 +173,13 @@ import javax.swing.JOptionPane;
                     int Ncons_vend, int Ncons_cons, int Ncons_vehi, String Nestado){
                 Conexion AC = new Conexion();
 
-                String[][]strResultado = AC.resultadoQuery(AC.queryConsulta("SELECT cons_fact, nume_fact, fech_fact, "
-                        + "cons_clie, cons_vend, cons_cons, cons_vehi, estado FROM tabl_fact  "
-                        + "WHERE cons_fact = " + Ncons_fact + ";" ));
+                String[][]strResultado = AC.resultadoQuery(AC.queryConsulta("SELECT cons_fact, nume_fact, fech_fact,"
+                        + "cons_clie, cons_vend, cons_cons, cons_vehi, estado FROM tabl_fact WHERE cons_fact = " + Ncons_fact + ";" ));
                 if (strResultado[0][0]!= null){
                 AC.queryUpdate("UPDATE tabl_fact SET cons_fact = " + Ncons_fact + ", nume_fact = " + Nnume_fact 
                         + ", fech_fact = " + Nfech_fact + ", cons_clie = " + Ncons_clie 
                         + ", cons_vend = " + Ncons_vend + ", cons_cons = " + Ncons_cons + ", cons_vehi = " + Ncons_vehi  
-                        + ", estado = " + Nestado+ "WHERE cons_fact=" + Ncons_fact);
+                        + ", estado = " + Nestado+ " WHERE cons_fact = " + Ncons_fact);
 
                 cons_fact = Ncons_fact;
                 nume_fact = Nnume_fact;

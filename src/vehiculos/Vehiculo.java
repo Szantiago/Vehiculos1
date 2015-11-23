@@ -132,9 +132,8 @@ public class Vehiculo {
                 intAux = IC.queryUpdate("INSERT INTO tabl_vehi (cons_cons"
                         + ",marc_vehi, mode_vehi, line_vehi, plac_vehi, colo_vehi, estado) "
                         + "VALUES (" + Icons_cons +",'"+ Imarc_vehi 
-                        +"','"+ Imode_vehi +"','"
-                        + Iline_vehi +"','"+ Iplac_vehi +"','"
-                        + Icolo_vehi + "','"+ Iestado + "')");
+                        +"','"+ Imode_vehi
+                        +"','"+ Iline_vehi +"','"+ Iplac_vehi +"','"+ Icolo_vehi + "','"+ Iestado + "')");
                 JOptionPane.showMessageDialog(null, "Se creo el registro con exito", "MENSAJE", 2);
             }
             
