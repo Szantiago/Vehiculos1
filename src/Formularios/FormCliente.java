@@ -56,7 +56,6 @@ public class FormCliente extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jcomboCl = new javax.swing.JComboBox<>();
-        jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         txtnum_doc = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -78,7 +77,11 @@ public class FormCliente extends javax.swing.JFrame {
         btnLimpiar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         btnInsertar = new javax.swing.JButton();
-        txtcons_clie = new javax.swing.JTextField();
+        txtbuscar = new javax.swing.JTextField();
+        btnbuscar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jComboEstado = new javax.swing.JComboBox<>();
+        txtestado = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -170,9 +173,25 @@ public class FormCliente extends javax.swing.JFrame {
             }
         });
 
-        txtcons_clie.addActionListener(new java.awt.event.ActionListener() {
+        txtbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcons_clieActionPerformed(evt);
+                txtbuscarActionPerformed(evt);
+            }
+        });
+
+        btnbuscar.setText("Buscar");
+        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Estado");
+
+        jComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        jComboEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboEstadoActionPerformed(evt);
             }
         });
 
@@ -236,28 +255,39 @@ public class FormCliente extends javax.swing.JFrame {
                                 .addComponent(btnVolver))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnbuscar))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jcomboCl, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtcons_clie, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 65, Short.MAX_VALUE)))
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 153, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnbuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jcomboCl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtcons_clie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                    .addComponent(jLabel9)
+                    .addComponent(jComboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtnum_doc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -302,7 +332,7 @@ public class FormCliente extends javax.swing.JFrame {
         Cliente[] miListaCl = mCliente.CrudListaCliente();
         mCliente = miListaCl[jcomboCl.getSelectedIndex()];
         
-        txtcons_clie.setText(""+mCliente.getcons_clie());
+        txtbuscar.setText(""+mCliente.getcons_clie());
         txtnum_doc.setText("" + mCliente.getnume_iden()); // Entrega el valor en los campos de texto
         txtprim_nomb.setText("" + mCliente.getprim_nomb()); // Entrega el valor en los campos de texto
         txtsegu_nomb.setText("" + mCliente.getsegu_nomb()); // Entrega el valor en los campos de texto
@@ -341,8 +371,9 @@ public class FormCliente extends javax.swing.JFrame {
                         h.setVisible(false);
                         setVisible(false);
         
-        mCliente.CrudActualizarCliente(mCliente.getcons_clie(),txtnum_doc.getText(),txtprim_nomb.getText(), txtsegu_nomb.getText(), 
-        txtprim_apel.getText(),txtsegu_apel.getText(),txtgene.getText(),txtcent_pobl.getText()); //Se importa el método y los parámetros necesarios
+        mCliente.CrudActualizarCliente(mCliente.getcons_clie(),txtnum_doc.getText(),txtprim_nomb.getText(), 
+        txtsegu_nomb.getText(),txtprim_apel.getText(),txtsegu_apel.getText(),txtgene.getText(),
+        txtcent_pobl.getText(), txtestado.getText()); //Se importa el método y los parámetros necesarios
         
 
         txtnum_doc.setText(""); // Entrega el valor en los campos de texto
@@ -352,6 +383,7 @@ public class FormCliente extends javax.swing.JFrame {
         txtsegu_apel.setText(""); // Entrega el valor en los campos de texto
         txtgene.setText("");// Entrega el valor en los campos de texto
         txtcent_pobl.setText(""); // Entrega el valor en los campos de texto
+        txtestado.setText("");
         
         btnInsertar.setEnabled(false); // Se mantiene el botón insertar como falso
     }//GEN-LAST:event_btnActualizarActionPerformed
@@ -385,7 +417,7 @@ public class FormCliente extends javax.swing.JFrame {
        
         mCliente.CrudInsertarCliente( txtnum_doc.getText(),
                     txtprim_nomb.getText(), txtsegu_nomb.getText(), txtprim_apel.getText(), 
-                    txtsegu_apel.getText(), txtgene.getText(), txtcent_pobl.getText()); //Se importa el método y los parámetros necesarios
+                    txtsegu_apel.getText(), txtgene.getText(), txtcent_pobl.getText(), txtestado.getText()); //Se importa el método y los parámetros necesarios
         
         jcomboCl.setSelectedIndex(mCliente.getcons_clie());
         
@@ -396,6 +428,7 @@ public class FormCliente extends javax.swing.JFrame {
         txtsegu_apel.setText(""); // Entrega el valor en los campos de texto
         txtgene.setText("");// Entrega el valor en los campos de texto
         txtcent_pobl.setText(""); // Entrega el valor en los campos de texto
+        txtestado.setText(""); // Entrega el valor en los campos de texto
         
 
         btnActualizar.setEnabled(false); // Se mantiene el botón actualizar como falso
@@ -420,6 +453,7 @@ public class FormCliente extends javax.swing.JFrame {
         txtsegu_apel.setText(""); // Entrega el valor en los campos de texto
         txtgene.setText(""); // Entrega el valor en los campos de texto
         txtcent_pobl.setText(""); // Entrega el valor en los campos de texto
+        jComboEstado.setSelectedIndex(0);
         
 
         btnInsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
@@ -433,7 +467,8 @@ public class FormCliente extends javax.swing.JFrame {
         jcomboCl.addItem(miListaCl[intcont].getcons_clie()+" - "+miListaCl[intcont].getnume_iden()
          +" - "+ miListaCl[intcont].getprim_nomb()+" - "+miListaCl[intcont].getsegu_nomb()
         +" - "+ miListaCl[intcont].getprim_apel()+" - "+ miListaCl[intcont].getsegu_apel()
-        +" - "+ miListaCl[intcont].getgene_clie()+" - "+ miListaCl[intcont].getcent_pobl());  
+        +" - "+ miListaCl[intcont].getgene_clie()+" - "+ miListaCl[intcont].getcent_pobl()
+        +" - "+ miListaCl[intcont].getestado());  
         jcomboCl.setSelectedIndex(0); // Posiciona el jcombo en la posición 0
             }   
         b=true;
@@ -453,14 +488,40 @@ public class FormCliente extends javax.swing.JFrame {
        c=true;
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void txtcons_clieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcons_clieActionPerformed
+    private void txtbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtcons_clieActionPerformed
+    }//GEN-LAST:event_txtbuscarActionPerformed
 
     private void txtgeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtgeneActionPerformed
         // TODO add your handling code here:
         setVisible(false);
     }//GEN-LAST:event_txtgeneActionPerformed
+
+    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
+        // TODO add your handling code here:
+        mCliente.CrudBuscarCliente((Integer.parseInt(txtbuscar.getText())));
+        
+        jcomboCl.setSelectedIndex(mCliente.getcons_clie());
+        txtnum_doc.setText(mCliente.getnume_iden());
+        txtprim_nomb.setText(mCliente.getprim_nomb());
+        txtsegu_nomb.setText(mCliente.getsegu_nomb());
+        txtprim_apel.setText(mCliente.getprim_apel());
+        txtsegu_apel.setText(mCliente.getsegu_apel());
+        txtgene.setText(mCliente.getgene_clie());
+        txtcent_pobl.setText(mCliente.getcent_pobl());
+        txtestado.setText(mCliente.getestado());
+        jComboEstado.setSelectedIndex(0);
+        
+        
+
+        
+        btnInsertar.setEnabled(false);
+    }//GEN-LAST:event_btnbuscarActionPerformed
+
+    private void jComboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboEstadoActionPerformed
+        // TODO add your handling code here:
+        txtestado.setText(jComboEstado.getSelectedItem().toString());
+    }//GEN-LAST:event_jComboEstadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -502,6 +563,8 @@ public class FormCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnInsertar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JButton btnbuscar;
+    private javax.swing.JComboBox<String> jComboEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -510,13 +573,14 @@ public class FormCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JComboBox<String> jcomboCP;
     private javax.swing.JComboBox<String> jcomboCl;
     private javax.swing.JComboBox<String> jcomboG;
+    private javax.swing.JTextField txtbuscar;
     private javax.swing.JTextField txtcent_pobl;
-    private javax.swing.JTextField txtcons_clie;
+    private javax.swing.JTextField txtestado;
     private javax.swing.JTextField txtgene;
     private javax.swing.JTextField txtnum_doc;
     private javax.swing.JTextField txtprim_apel;

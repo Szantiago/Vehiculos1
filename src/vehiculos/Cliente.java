@@ -28,6 +28,7 @@ import javax.swing.JOptionPane;
             private String segu_apel = new String();
             private String gene_clie = new String();
             private String cent_pobl = new String();
+            private String estado = new String();
 
 //-------------------------------------------------------------------------------
 //Constructores
@@ -38,7 +39,8 @@ import javax.swing.JOptionPane;
             }
         //Constructor que pide todos los parametros
 
-            public Cliente(int Icons_clie, String Inume_iden, String Iprim_nomb, String Isegu_nomb, String Iprim_apel, String Isegu_apel, String Igene_clie, String Icent_pobl){
+            public Cliente(int Icons_clie, String Inume_iden, String Iprim_nomb, String Isegu_nomb, String Iprim_apel, 
+                    String Isegu_apel, String Igene_clie, String Icent_pobl, String Iestado){
             cons_clie = Icons_clie;
             nume_iden = Inume_iden;
             prim_nomb = Iprim_nomb;
@@ -46,7 +48,8 @@ import javax.swing.JOptionPane;
             prim_apel = Iprim_apel;
             segu_apel = Isegu_apel;
             gene_clie = Igene_clie;
-            cent_pobl = Icent_pobl;         
+            cent_pobl = Icent_pobl;
+            estado = Iestado;
             }
         /**
         * Costructor que filtra por el concecutivo y crea la instancia con el registro*/    
@@ -121,24 +124,33 @@ import javax.swing.JOptionPane;
                     cent_pobl = newVal;
             }
             
+            public String getestado(){
+                    return estado;
+            }
+
+            public void setestado(String newVal){
+                    estado = newVal;
+            }
+                
+            
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Métodos CRUD
         
 	/**Para crear registros en la tabla tbCliente*/
 
              public void CrudInsertarCliente(String Inume_iden, String Iprim_nomb, String Isegu_nomb, String Iprim_apel, String Isegu_apel, 
-                                            String Igene_clie, String Icent_pobl){
+                                            String Igene_clie, String Icent_pobl, String Iestado){
                 
                 Conexion IC = new Conexion();
                 
                 int intAux;
                 intAux = IC.queryUpdate("INSERT INTO tabl_clie(nume_iden,"
                         + "prim_nomb, segu_nomb, prim_apel, segu_apel, "
-                        + "gene_clie, cent_pobl) "
+                        + "gene_clie, cent_pobl, estado) "
                         + "VALUES (" + Inume_iden +",'"+ Iprim_nomb 
                         +"','"+ Isegu_nomb +"','"+ Iprim_apel 
                         +"','"+ Isegu_apel +"','"+ Igene_clie 
-                        +"','"+ Icent_pobl + "')");
+                        +"','"+ Icent_pobl +"','"+ Iestado + "')");
                 JOptionPane.showMessageDialog(null, "Se creo el registro con exito", "MENSAJE", 2);
             }
             
@@ -149,7 +161,7 @@ import javax.swing.JOptionPane;
               
                 Conexion BC = new Conexion();
                 String[][]strResultado = BC.resultadoQuery(BC.queryConsulta("SELECT cons_clie, nume_iden, "
-                        + "prim_nomb, segu_nomb, prim_apel, segu_apel, gene_clie, cent_pobl FROM tabl_clie WHERE cons_clie = "
+                        + "prim_nomb, segu_nomb, prim_apel, segu_apel, gene_clie, cent_pobl, estado FROM tabl_clie WHERE cons_clie = "
                         + "" + Fcons_clie + ";" ));
 
                 cons_clie = Integer.parseInt(strResultado[0][0]);
@@ -160,6 +172,7 @@ import javax.swing.JOptionPane;
                 segu_apel = strResultado[0][5];
                 gene_clie = strResultado[0][6];
                 cent_pobl = strResultado[0][7];
+                estado = strResultado[0][8];
 
             }
 //...............................................................................
@@ -168,17 +181,17 @@ import javax.swing.JOptionPane;
             
             public void CrudActualizarCliente(int Ncons_clie, String Nnume_iden, String Nprim_nomb, 
                     String Nsegu_nomb, String Nprim_apel, String Nsegu_apel, 
-                    String Ngene_clie, String Ncent_pobl){
+                    String Ngene_clie, String Ncent_pobl, String Nestado){
                 Conexion AC = new Conexion();
 
                 String[][]strResultado = AC.resultadoQuery(AC.queryConsulta("SELECT cons_clie, nume_iden, "
-                        + "prim_nomb, segu_nomb, prim_apel, segu_apel,gene_clie, cent_pobl FROM tabl_clie WHERE cons_clie = " + Ncons_clie + ";" ));
+                        + "prim_nomb, segu_nomb, prim_apel, segu_apel,gene_clie, cent_pobl, estado FROM tabl_clie WHERE cons_clie = " + Ncons_clie + ";" ));
                 if (strResultado[0][0]!= null){
                 AC.queryUpdate("UPDATE tabl_clie SET nume_iden = " + Nnume_iden + ", "
                         + "prim_nomb = '" + Nprim_nomb + "', segu_nomb = '" 
                         + Nsegu_nomb + "', prim_apel = '" + Nprim_apel 
                         + "', segu_apel = '" + Nsegu_apel + "', gene_clie = '" 
-                        + Ngene_clie + "', cent_pobl = '" + Ncent_pobl + "' WHERE cons_clie = " + Ncons_clie + ";");
+                        + Ngene_clie + "', cent_pobl = '" + Ncent_pobl + "', estado = '" + Nestado + "' WHERE cons_clie = " + Ncons_clie + ";");
                         
 
                 nume_iden = Nnume_iden;
@@ -188,6 +201,7 @@ import javax.swing.JOptionPane;
                 segu_apel = Nsegu_apel;
                 gene_clie = Ngene_clie;
                 cent_pobl = Ncent_pobl;
+                estado = Nestado;
 
                 String strMensaje = "Se modifico el cliente con éxito";
                    JOptionPane.showMessageDialog(null, strMensaje,  "MODIFICAR CLIENTE", 2);
@@ -218,12 +232,13 @@ import javax.swing.JOptionPane;
             
             Cliente [] mClientes = new Cliente[intTama]; //Constructor Arreglo
                         
-            strRes = CC.resultadoQuery(CC.queryConsulta("SELECT cons_clie, nume_iden, prim_nomb, segu_nomb, prim_apel, segu_apel, gene_clie, cent_pobl FROM tabl_clie order by cons_clie"));
+            strRes = CC.resultadoQuery(CC.queryConsulta("SELECT cons_clie, nume_iden, prim_nomb, segu_nomb, prim_apel, "
+                    + "segu_apel, gene_clie, cent_pobl, estado FROM tabl_clie order by cons_clie"));
 
             for (intCont=0; intCont<(intTama); intCont++){
                     Cliente tabl_clieAux = new Cliente (Integer.parseInt(strRes[intCont][0]), 
                     strRes[intCont][1], strRes[intCont][2], strRes[intCont][3], strRes[intCont][4],
-                    strRes[intCont][5], strRes[intCont][6], strRes[intCont][7]); // Crea instancia
+                    strRes[intCont][5], strRes[intCont][6], strRes[intCont][7], strRes[intCont][8]); // Crea instancia
                     mClientes[intCont] = tabl_clieAux;
             }
             System.out.print("Fueron " + intTama + " clientes");//Muestra cuantos clientes hay

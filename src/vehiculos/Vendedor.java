@@ -11,17 +11,19 @@ public class Vendedor {
     int tele_Vend;
     int cons_Cons;
     int cons_Vend;
+    String estado = new String();
     
     private Conexion conMicon;
     
     public Vendedor(){
     }
     
-    Vendedor(int cCons_Vend ,String cNom_Vend, int cTele_Vend, int cCons_Cons){
+    Vendedor(int cCons_Vend ,String cNom_Vend, int cTele_Vend, int cCons_Cons, String cestado){
         nom_Vend = cNom_Vend;
         tele_Vend = cTele_Vend;
         cons_Cons = cCons_Cons;
         cons_Vend = cCons_Vend;
+        estado = cestado;
     }
     
     public void setStringNomVend(String newVal){
@@ -49,11 +51,20 @@ public class Vendedor {
 		return nom_Vend;
 	}
     
-    public void crudCrearVendedor(String nom_CVend, int tele_CVend, int cons_CCons){
+    public String getestado(){
+                    return estado;
+            }
+
+            public void setestado(String newVal){
+                    estado = newVal;
+            }
+    
+    public void crudCrearVendedor(String nom_CVend, int tele_CVend, int cons_CCons, String cestado){
 
             conMicon = new Conexion();
             
-            conMicon.queryUpdate("INSERT INTO tabl_vend (nom_vend, tele_vend, cons_Cons) VALUES( '" + nom_CVend +"','"+tele_CVend+"','"+cons_CCons+ "');");
+            conMicon.queryUpdate("INSERT INTO tabl_vend (cons_vend, nomb_vend, tel_vend, cons_cons, estado) "
+                    + "VALUES( '" + nom_CVend +"','"+tele_CVend+"','"+cons_CCons +"','"+cestado+ "');");
 
             String strMensaje = "Se creo el vendedor con éxito";
             JOptionPane.showMessageDialog(null, strMensaje,  "CREAR Vendedor", 2);  
@@ -87,13 +98,14 @@ public class Vendedor {
                 //System.out.print("\n el tamaño es:" + intTama + "\n");
                 
                 strReg = conMicon.resultadoQuery(conMicon.queryConsulta(
-                        "SELECT cons_vend, nom_vend, tele_vend, cons_cons FROM tabl_vend ORDER BY cons_vend ;"));                
+                        "SELECT cons_vend, nom_vend, tele_vend, cons_cons, estado FROM tabl_vend ORDER BY cons_vend ;"));                
 
                 Vendedor [] Lista = new Vendedor[intTama];
 
                 for (intCont = 0; intCont <(intTama); intCont++)
                 {
-                    Vendedor VendAux = new Vendedor( Integer.parseInt(strReg[intCont][0]), strReg[intCont][1], Integer.parseInt(strReg[intCont][2]),Integer.parseInt(strReg[intCont][3]));
+                    Vendedor VendAux = new Vendedor( Integer.parseInt(strReg[intCont][0]), strReg[intCont][1], 
+                            Integer.parseInt(strReg[intCont][2]),Integer.parseInt(strReg[intCont][3]),strReg[intCont][4]);
                                         
                     Lista[intCont] = VendAux;
 
@@ -115,31 +127,36 @@ public class Vendedor {
             conMicon = new Conexion();
 
             String [][]strReg = conMicon.resultadoQuery(conMicon.queryConsulta(
-                                    "SELECT cons_vend, nom_vend , tele_vend, cons_cons FROM tabl_vend WHERE  cons_vend =" + cons_MVend +  ";")); 
+                                    "SELECT cons_vend, nom_vend , tele_vend, cons_cons, estado FROM tabl_vend "
+                                            + "WHERE  cons_vend =" + cons_MVend +  ";")); 
            
             
             cons_Vend = Integer.parseInt(strReg[0][0]);
             nom_Vend=strReg[0][1];
             tele_Vend=Integer.parseInt(strReg[0][2]);
             cons_Cons=Integer.parseInt(strReg[0][3]);
+            estado=strReg[0][4];
             
 	}
     
-    public void crudActualizarVend(int cons_CVend, String nom_CVend, int tele_CVend, int cons_CCons){
+    public void crudActualizarVend(int cons_CVend, String nom_CVend, int tele_CVend, int cons_CCons, String Cestado){
 
            conMicon = new Conexion();
 
-	   String [][]strReg = conMicon.resultadoQuery(conMicon.queryConsulta("SELECT cons_vend, nom_vend , tele_vend, cons_cons FROM tabl_vend WHERE  cons_vend = " + cons_CVend  +  ";"));
+	   String [][]strReg = conMicon.resultadoQuery(conMicon.queryConsulta("SELECT cons_vend, nom_vend , "
+                   + "tele_vend, cons_cons, estado FROM tabl_vend WHERE  cons_vend = " + cons_CVend  +  ";"));
            
 	   if(strReg[0][0] != null)
 	   {
-                conMicon.queryUpdate("UPDATE ct_epss SET nom_vend =  '" + nom_CVend +" , tele_vend =  '" + tele_CVend+" , cons_cons =  '" + cons_CCons+ 
-                                                    "' WHERE  cons_vend = " + cons_CVend + ";");
+                conMicon.queryUpdate("UPDATE ct_epss SET nom_vend =  '" + nom_CVend +" , tele_vend =  '" 
+                        + tele_CVend+" , cons_cons =  '" + cons_CCons +" , estado =  '" + Cestado
+                        + "' WHERE  cons_vend = " + cons_CVend + ";");
                 
                cons_Vend = cons_CVend;
                nom_Vend=nom_CVend;
                tele_Vend=tele_CVend;
                cons_Cons=cons_CCons;
+               estado=Cestado;
                
                String strMensaje = "Se modifico el vendedor con éxito";
                JOptionPane.showMessageDialog(null, strMensaje,  "MODIFICAR VENDEDOR", 2);

@@ -27,6 +27,7 @@ import javax.swing.JOptionPane;
             private int cons_vend;
             private int cons_cons;
             private int cons_vehi;
+            private String estado = new String();
            
 
 
@@ -39,7 +40,8 @@ import javax.swing.JOptionPane;
             }
             
 //       Constructor que pide todos los parametros
-            public Factura(int Icons_fact, String Inume_fact, String Ifech_fact, int Icons_clie, int Icons_vend, int Icons_cons, int Icons_vehi){
+            public Factura(int Icons_fact, String Inume_fact, String Ifech_fact, int Icons_clie, int Icons_vend, int Icons_cons, 
+                    int Icons_vehi, String Iestado){
             cons_fact = Icons_fact;
             nume_fact = Inume_fact;
             fech_fact = Ifech_fact;
@@ -47,6 +49,7 @@ import javax.swing.JOptionPane;
             cons_vend = Icons_vend;
             cons_cons = Icons_cons;
             cons_vehi = Icons_vehi;
+            estado = Iestado;
             }
         /**
         * Costructor que filtra por el consecutivo y crea la instancia con el registro
@@ -114,6 +117,15 @@ import javax.swing.JOptionPane;
             public void setcons_vehi(int newVal){
                     cons_vehi = newVal;
             }
+            
+            public String getestado(){
+                    return estado;
+            }
+
+            public void setestado(String newVal){
+                    estado = newVal;
+            }
+                
                       
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //Métodos CRUD
@@ -122,14 +134,14 @@ import javax.swing.JOptionPane;
 
 
              public void CrudInsertarFactura(String Inume_fact, String Ifech_fact, int Icons_clie,
-                     int Icons_vend, int Icons_cons, int Icons_vehi){
+                     int Icons_vend, int Icons_cons, int Icons_vehi, String Iestado){
                 
                 Conexion IC = new Conexion();
                 
                 int intAux;
-                intAux = IC.queryUpdate("INSERT INTO `tabl_fact`(nume_fact, fech_fact, cons_clie, "
-                        + "cons_vend, cons_cons, cons_vehi) VALUES ("+ Inume_fact +"','"+ Ifech_fact 
-                        +"','"+ Icons_clie +"','"+ Icons_vend +"','"+ Icons_cons +"','"+ Icons_vehi + "')");
+                intAux = IC.queryUpdate("INSERT INTO tabl_fact(nume_fact, fech_fact, cons_clie, "
+                        + "cons_vend, cons_cons, cons_vehi, estado) VALUES ("+ Inume_fact +","+ Ifech_fact 
+                        +","+ Icons_clie +","+ Icons_vend +","+ Icons_cons +","+ Icons_vehi +","+ Iestado +"')");
                 JOptionPane.showMessageDialog(null, "Se creo el registro con exito", "MENSAJE", 2);
             }
             
@@ -141,7 +153,7 @@ import javax.swing.JOptionPane;
                 
                 Conexion BC = new Conexion();
                 String[][]strResultado = BC.resultadoQuery(BC.queryConsulta("SELECT cons_fact, nume_fact, fech_fact, "
-                        + "cons_clie, cons_vend, cons_cons, cons_vehi FROM tabl_fact WHERE cons_fact = " 
+                        + "cons_clie, cons_vend, cons_cons, cons_vehi, estado FROM tabl_fact WHERE cons_fact = " 
                         + Fcons_fact + ";"));
 
                 cons_fact = Integer.parseInt(strResultado[0][0]);
@@ -151,23 +163,24 @@ import javax.swing.JOptionPane;
                 cons_vend = Integer.parseInt(strResultado[0][4]);                        
                 cons_cons = Integer.parseInt(strResultado[0][5]);
                 cons_vehi = Integer.parseInt(strResultado[0][6]);
+                estado = strResultado[0][7];
             }
 //...............................................................................
 	//Para modificar el registro de una factura
             
           
             public void CrudActualizarFactura(int Ncons_fact, String Nnume_fact, String Nfech_fact, int Ncons_clie, 
-                    int Ncons_vend, int Ncons_cons, int Ncons_vehi){
+                    int Ncons_vend, int Ncons_cons, int Ncons_vehi, String Nestado){
                 Conexion AC = new Conexion();
 
-                String[][]strResultado = AC.resultadoQuery(AC.queryConsulta("SELECT `cons_fact`, `nume_fact`, `fech_fact`, "
-                        + "`cons_clie`, `cons_vend`, `cons_cons`, `cons_vehi` FROM `tabl_fact`  "
+                String[][]strResultado = AC.resultadoQuery(AC.queryConsulta("SELECT cons_fact, nume_fact, fech_fact, "
+                        + "cons_clie, cons_vend, cons_cons, cons_vehi, estado FROM tabl_fact  "
                         + "WHERE cons_fact = " + Ncons_fact + ";" ));
                 if (strResultado[0][0]!= null){
-                AC.queryUpdate("UPDATE tabl_fact SET cons_fact = " + Ncons_fact + ", nume_fact = '" + Nnume_fact 
-                        + "', fech_fact = '" + Nfech_fact + "', cons_clie = '" + Ncons_clie 
-                        + "', cons_vend = '" + Ncons_vend + "', cons_cons = '" + Ncons_cons + "', cons_vehi = '" + Ncons_vehi  
-                        +"'WHERE cons_fact=" + Ncons_fact);
+                AC.queryUpdate("UPDATE tabl_fact SET cons_fact = " + Ncons_fact + ", nume_fact = " + Nnume_fact 
+                        + ", fech_fact = " + Nfech_fact + ", cons_clie = " + Ncons_clie 
+                        + ", cons_vend = " + Ncons_vend + ", cons_cons = " + Ncons_cons + ", cons_vehi = " + Ncons_vehi  
+                        + ", estado = " + Nestado+ "WHERE cons_fact=" + Ncons_fact);
 
                 cons_fact = Ncons_fact;
                 nume_fact = Nnume_fact;
@@ -176,6 +189,7 @@ import javax.swing.JOptionPane;
                 cons_vend = Ncons_vend;
                 cons_cons = Ncons_cons;
                 cons_vehi = Ncons_vehi;
+                estado = Nestado;
 
                 String strMensaje = "Se modifico LA FACTURA con éxito";
                    JOptionPane.showMessageDialog(null, strMensaje,  "MODIFICAR VENTA", 2);
@@ -199,7 +213,7 @@ import javax.swing.JOptionPane;
             Conexion CC = new Conexion();
   
             try{
-            String [][]strRes = CC.resultadoQuery(CC.queryConsulta("SELECT COUNT(`cons_fact`) "
+            String [][]strRes = CC.resultadoQuery(CC.queryConsulta("SELECT COUNT(cons_fact) "
                 + "AS TANTOS FROM tabl_fact;"));
             
             intTama = Integer.parseInt(strRes[0][0]);
@@ -208,13 +222,13 @@ import javax.swing.JOptionPane;
             Factura[] mVentas = new Factura[intTama]; //Constructor Arreglo
                         
             strRes = CC.resultadoQuery(CC.queryConsulta("SELECT cons_fact, nume_fact, fech_fact, cons_clie, "
-                    + "cons_vend, cons_cons, cons_vehi FROM tabl_fact"));
+                    + "cons_vend, cons_cons, cons_vehi, estado FROM tabl_fact"));
 
             for (intCont=0; intCont<(intTama); intCont++){
             Factura tabl_factAux = new Factura((Integer.parseInt(strRes[intCont][0])), strRes[intCont][1],
                     strRes[intCont][2],(Integer.parseInt(strRes[intCont][3])),
                     (Integer.parseInt(strRes[intCont][4])),(Integer.parseInt(strRes[intCont][5])),
-                    (Integer.parseInt(strRes[intCont][6]))); // Crea instancia
+                    (Integer.parseInt(strRes[intCont][6])), strRes[intCont][7]); // Crea instancia
             mVentas[intCont] = tabl_factAux; //Guardar en el vector
             }
             

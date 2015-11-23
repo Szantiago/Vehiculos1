@@ -20,13 +20,20 @@ public class Concesionario {
 	private String dire_cons = new String();
         private String nombre_muni = new String();
         private int cons_conse;
+        private String estado = new String();
 	private Conexion conMiconexion;
         
-        public Concesionario (){}
+        public Concesionario (){
+        }
         
-        public Concesionario(int Ccons_cons, String Cnomb_cons){
+        public Concesionario(int Ccons_cons, String Cnomb_cons, String Ccodi_pobl, int Ctele_cons, String Cdire_cons, String Cestado){
+         
         cons_cons = Ccons_cons;
         nomb_cons=Cnomb_cons;
+        codi_pobl=Ccodi_pobl;
+        tele_cons=Ctele_cons;
+        dire_cons=Cdire_cons;
+        estado=Cestado;
         
         }
         
@@ -35,9 +42,7 @@ public class Concesionario {
         codi_pobl=Ccodi_pobl;
         nombre_muni= Cnombre_muni;
         }
-        public Concesionario(int Ccons_consr, String Cnomb_cons, String Ccodi_pobl, String Ctele_cons, String Cdire_cons){
-           
-	}
+       
         
         //<Metodos get y set>
         
@@ -106,35 +111,48 @@ public class Concesionario {
 		cons_conse = newVal;
 	}
          
+         public String getestado(){
+                    return estado;
+        }
+
+         public void setestado(String newVal){
+                    estado = newVal;
+        }
+                
          
-        public void crudCrearConsencionario(String strnomb_cons, String strcodi_pobl, int Inttele_cons, String strdire_cons){
+        public void crudCrearConsencionario(String strnomb_cons, String strcodi_pobl, int Inttele_cons, 
+                String strdire_cons, String strestado){
         
             conMiconexion = new Conexion();
             //int intAux;          
             conMiconexion.queryUpdate("INSERT INTO tabl_cons( nomb_cons, codi_pobl,"
-                    + " tele_cons, dire_cons) VALUES('" +strnomb_cons +"','" +
-                    strcodi_pobl + "','"+ Inttele_cons + "','" + strdire_cons +"');");
+                    + " tele_cons, dire_cons, estado) VALUES('" +strnomb_cons +"," +
+                    strcodi_pobl + ","+ Inttele_cons + "," + strdire_cons + "," + strestado +");");
             
             String strMensaje = "Se creo con éxito";
             JOptionPane.showMessageDialog (null, strMensaje,  "Crear Consecionario ", 2);   
          }
         
-        public void crudActualizarConsencionario(String strnomb_cons, String strcodi_pobl, int Inttele_cons, String strdire_cons, int Intcons_cons) {
+        public void crudActualizarConsencionario(int Intcons_cons, String strnomb_cons, String strcodi_pobl, int Inttele_cons, 
+                String strdire_cons, String strestado) {
 
             conMiconexion = new Conexion();
-	   String [][]strReg = conMiconexion.resultadoQuery(conMiconexion.queryConsulta("SELECT nomb_cons, codi_pobl, tele_cons, dire_cons, cons_cons FROM tabl_cons WHERE cons_cons =" + Intcons_cons +  ";"));
+	   String [][]strReg = conMiconexion.resultadoQuery(conMiconexion.queryConsulta("SELECT cons_cons, nomb_cons, "
+                   + "codi_pobl, tele_cons, dire_cons, estado FROM tabl_cons WHERE cons_cons =" + Intcons_cons +  ";"));
 	   if(strReg[0][0] != null)
 	   {
                
                conMiconexion.queryUpdate("UPDATE tabl_cons SET  nomb_cons= "
                        + strnomb_cons + ", codi_pobl= "+ strcodi_pobl
-                       + ", tele_cons= '"+ Inttele_cons+ "', dire_cons= '"+ strdire_cons +  "' WHERE  cons_cons = " + Intcons_cons +";");
+                       + ", tele_cons= "+ Inttele_cons + ", dire_cons= "+ strdire_cons + ", estado= "+ strestado 
+                       +  " WHERE  cons_cons = " + Intcons_cons +";");
                
                 cons_conse = Intcons_cons;
                 nomb_cons = strnomb_cons;
                 codi_pobl= strcodi_pobl;
                 tele_cons = Inttele_cons;
                 dire_cons = strdire_cons;
+                estado = strestado;
         
                 
              
@@ -155,15 +173,15 @@ public class Concesionario {
             conMiconexion = new Conexion();
 
             String [][]strReg = conMiconexion.resultadoQuery(conMiconexion.queryConsulta(
-                                    "SELECT  cons_cons,nomb_cons,codi_pobl, tele_cons,dire_cons FROM tabl_cons WHERE  cons_cons = " + consecutivo_cons +  ";")); 
+                                    "SELECT  cons_cons, nomb_cons, codi_pobl, tele_cons, dire_cons, estado "
+                                            + "FROM tabl_cons WHERE  cons_cons = " + consecutivo_cons +  ";")); 
            
             cons_cons = Integer.parseInt(strReg[0][0]);
-            
             nomb_cons = strReg[0][1];
-            
             codi_pobl = strReg[0][2];
             tele_cons = Integer.parseInt(strReg[0][3]);
             dire_cons = strReg[0][4];
+            estado = strReg[0][5];
             
 	}
         
@@ -220,14 +238,16 @@ public class Concesionario {
                 //System.out.print("\n el tamaño es:" + intTama + "\n");
                 
                 strReg = conMiconexion.resultadoQuery(conMiconexion.queryConsulta(
-                        "SELECT cons_cons, nomb_cons FROM tabl_cons ORDER BY cons_cons;"));                
+                        "SELECT cons_cons, nomb_cons, codi_pobl, tele_cons, dire_cons, estado FROM tabl_cons "
+                                + "ORDER BY cons_cons;"));                
 
                 Concesionario [] Lista = new Concesionario[intTama];
 
                 for (intCont = 0; intCont <(intTama); intCont++)
                 {
                     Concesionario ConsecioAux = new Concesionario (Integer.parseInt(strReg[intCont][0]), 
-                            strReg[intCont][1]);
+                    strReg[intCont][1], strReg[intCont][2], Integer.parseInt(strReg[intCont][3]), 
+                    strReg[intCont][4], strReg[intCont][5]);
                                         
                     Lista[intCont] = ConsecioAux;
 
