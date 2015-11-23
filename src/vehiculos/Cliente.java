@@ -132,7 +132,7 @@ import javax.swing.JOptionPane;
                 Conexion IC = new Conexion();
                 
                 int intAux;
-                intAux = IC.queryUpdate("INSERT INTO tabl_clie(nume_iden, "
+                intAux = IC.queryUpdate("INSERT INTO tabl_clie(nume_iden,"
                         + "prim_nomb, segu_nomb, prim_apel, segu_apel, "
                         + "gene_clie, cent_pobl) "
                         + "VALUES (" + Inume_iden +",'"+ Iprim_nomb 

@@ -132,9 +132,12 @@ import javax.swing.JOptionPane;
                 Conexion IC = new Conexion();
                 
                 int intAux;
-                intAux = IC.queryUpdate("INSERT INTO tabl_vehi (cons_cons, marc_vehi, mode_vehi, line_vehi, plac_vehi, colo_vehi) "
-                + "VALUES (" + Icons_cons +",'"+ Imarc_vehi +"','"+ Imode_vehi +"','"+ Iline_vehi +"','"+ Iplac_vehi +"','"+ Icolo_vehi + "','"
-                + Iestado + "')");
+                intAux = IC.queryUpdate("INSERT INTO tabl_vehi (cons_cons"
+                        + ",marc_vehi, mode_vehi, line_vehi, plac_vehi, colo_vehi) "
+                        + "VALUES (" + Icons_cons +",'"+ Imarc_vehi 
+                        +"','"+ Imode_vehi +"','"
+                        + Iline_vehi +"','"+ Iplac_vehi +"','"
+                        + Icolo_vehi + "','"+ Iestado + "')");
                 JOptionPane.showMessageDialog(null, "Se creo el registro con exito", "MENSAJE", 2);
             }
             
@@ -164,13 +167,13 @@ import javax.swing.JOptionPane;
                     String Nline_vehi, String Nplac_vehi, String Ncolo_vehi, String Nestado){
             Conexion AC = new Conexion();
 
-            String[][]strResultado = AC.resultadoQuery(AC.queryConsulta("SELECT cons_vehi, cons_cons FROM tabl_vehi, estado" 
+            String[][]strResultado = AC.resultadoQuery(AC.queryConsulta("SELECT cons_vehi FROM tabl_vehi" 
                     + " WHERE cons_vehi = " + Ncons_vehi + ";" ));
                 
             if (strResultado[0][0]!= null){
-            AC.queryUpdate("UPDATE tabl_vehi SET cons_cons=" + Ncons_cons +", marc_vehi="+ Nmarc_vehi 
-                    + ", mode_vehi="+ Nmode_vehi + ", line_vehi="+ Nline_vehi + ",plac_vehi="+ Nplac_vehi + ", colo_vehi="+ Ncolo_vehi 
-                    + ", estado="+ Nestado + "'WHERE cons_vehi=" + Ncons_vehi +";");
+            AC.queryUpdate("UPDATE tabl_vehi SET cons_cons = " + Ncons_cons +", marc_vehi = "+ Nmarc_vehi 
+                    + ", mode_vehi = "+ Nmode_vehi + ", line_vehi = "+ Nline_vehi + ",plac_vehi = "+ Nplac_vehi + ", colo_vehi= "+ Ncolo_vehi 
+                    + ", estado = "+ Nestado + "WHERE cons_vehi = " + Ncons_vehi +";");
 
                 cons_vehi = Ncons_vehi;
                 cons_cons = Ncons_cons;

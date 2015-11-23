@@ -69,7 +69,7 @@ public class Realizado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        FormCliente h = new FormCliente();
+        FormVehiculo h = new FormVehiculo();
                 h.setVisible(true);
                 Realizado e =new Realizado();
                         e.setVisible(false);

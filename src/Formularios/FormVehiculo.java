@@ -79,6 +79,7 @@ public class FormVehiculo extends javax.swing.JFrame {
         txtestado = new javax.swing.JTextField();
         txtbuscar = new javax.swing.JTextField();
         btnbuscar = new javax.swing.JButton();
+        txtconcesionario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -164,10 +165,22 @@ public class FormVehiculo extends javax.swing.JFrame {
             }
         });
 
+        txtestado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtestadoActionPerformed(evt);
+            }
+        });
+
         btnbuscar.setText("Buscar");
         btnbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnbuscarActionPerformed(evt);
+            }
+        });
+
+        txtconcesionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtconcesionarioActionPerformed(evt);
             }
         });
 
@@ -200,7 +213,9 @@ public class FormVehiculo extends javax.swing.JFrame {
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboC, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtconcesionario, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtmarca, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -217,18 +232,18 @@ public class FormVehiculo extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnbuscar))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jComboVh, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jComboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnbuscar)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addComponent(txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 38, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -250,7 +265,8 @@ public class FormVehiculo extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(txtmarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jComboC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtconcesionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -311,10 +327,18 @@ public class FormVehiculo extends javax.swing.JFrame {
 
     private void btninsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertarActionPerformed
         // TODO add your handling code here:
+        Realizado e =new Realizado();
+        FormVehiculo h = new FormVehiculo();
+                
+        e.setVisible(true);
+        h.setVisible(false);
+        setVisible(false);
+        
         mivehiculo.CrudInsertarVehiculo(miconcesionario.getcons_cons(), txtmarca.getText(), txtmodelo.getText(),txtlinea.getText(),
         txtplaca.getText(), txtcolor.getText(), txtestado.getText());                                                                                                  
        
-        jComboVh.setSelectedIndex(miconcesionario.getcons_cons());
+        
+        txtconcesionario.setText("");
         txtmarca.setText(""); // Entrega el valor en los campos de texto  
         txtmodelo.setText(""); // Entrega el valor en los campos de texto
         txtlinea.setText(""); // Entrega el valor en los campos de texto
@@ -328,9 +352,9 @@ public class FormVehiculo extends javax.swing.JFrame {
     private void jComboCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboCActionPerformed
         // TODO add your handling code here:
         if(c){
+        txtconcesionario.setText(jComboC.getSelectedItem().toString());    
         Concesionario[] miLista = miconcesionario.crudListaConsecionario();
         miconcesionario = miLista[jComboC.getSelectedIndex()];
-        
         btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
         btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
         }
@@ -345,11 +369,16 @@ public class FormVehiculo extends javax.swing.JFrame {
 
     private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
         // TODO add your handling code here:
+        Realizado e =new Realizado();
+        FormVehiculo h = new FormVehiculo();
+                
+                        e.setVisible(true);
+                        h.setVisible(false);
+                        setVisible(false);
         mivehiculo.CrudActualizarVehiculo(mivehiculo.getcons_vehi(),miconcesionario.getcons_cons(),
                 txtmarca.getText(),txtmodelo.getText(), txtlinea.getText(), txtplaca.getText(), txtcolor.getText(), txtestado.getText()); //Se importa el método y los parámetros necesarios
 
-        jComboVh.setSelectedIndex(mivehiculo.getcons_vehi());
-        jComboC.setSelectedIndex(miconcesionario.getcons_cons());
+        txtconcesionario.setText("");
         txtmarca.setText(""); // Entrega el valor en los campos de texto
         txtmodelo.setText(""); // Entrega el valor en los campos de texto  
         txtlinea.setText(""); // Entrega el valor en los campos de texto
@@ -362,6 +391,13 @@ public class FormVehiculo extends javax.swing.JFrame {
 
     private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
         // TODO add your handling code here:
+        Realizado e =new Realizado();
+        FormVehiculo h = new FormVehiculo();
+                
+        e.setVisible(true);
+        h.setVisible(false);
+        setVisible(false);
+                
         p=false; // Se declara la variable booleana como falsa para no realizar la acción       
         txtmarca.setText(""); // Entrega el valor en los campos de texto
         txtmodelo.setText(""); // Entrega el valor en los campos de texto  
@@ -419,6 +455,15 @@ public class FormVehiculo extends javax.swing.JFrame {
         btninsertar.setEnabled(false);
     }//GEN-LAST:event_btnbuscarActionPerformed
 
+    private void txtconcesionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtconcesionarioActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtconcesionarioActionPerformed
+
+    private void txtestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtestadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtestadoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -473,6 +518,7 @@ public class FormVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField txtbuscar;
     private javax.swing.JTextField txtcolor;
+    private javax.swing.JTextField txtconcesionario;
     private javax.swing.JTextField txtestado;
     private javax.swing.JTextField txtlinea;
     private javax.swing.JTextField txtmarca;

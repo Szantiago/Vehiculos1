@@ -76,11 +76,9 @@ public class FormCliente extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         btnActualizar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         btnInsertar = new javax.swing.JButton();
         txtcons_clie = new javax.swing.JTextField();
-        jcheckactivo = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -163,13 +161,6 @@ public class FormCliente extends javax.swing.JFrame {
             }
         });
 
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
         btnVolver.setText("Volver");
 
         btnInsertar.setText("Insertar");
@@ -182,13 +173,6 @@ public class FormCliente extends javax.swing.JFrame {
         txtcons_clie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcons_clieActionPerformed(evt);
-            }
-        });
-
-        jcheckactivo.setText("Activo");
-        jcheckactivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcheckactivoActionPerformed(evt);
             }
         });
 
@@ -241,18 +225,13 @@ public class FormCliente extends javax.swing.JFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel6)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtsegu_apel))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jcheckactivo)
-                                                .addGap(0, 0, Short.MAX_VALUE))))))
+                                                .addComponent(txtsegu_apel))))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnInsertar)
                                 .addGap(4, 4, 4)
                                 .addComponent(btnActualizar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLimpiar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEliminar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnVolver))))
                     .addGroup(layout.createSequentialGroup()
@@ -278,11 +257,10 @@ public class FormCliente extends javax.swing.JFrame {
                     .addComponent(txtcons_clie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtnum_doc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcheckactivo))
+                    .addComponent(txtnum_doc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -309,7 +287,6 @@ public class FormCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar)
                     .addComponent(btnLimpiar)
-                    .addComponent(btnEliminar)
                     .addComponent(btnVolver)
                     .addComponent(btnInsertar))
                 .addContainerGap())
@@ -379,22 +356,6 @@ public class FormCliente extends javax.swing.JFrame {
         btnInsertar.setEnabled(false); // Se mantiene el botón insertar como falso
     }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-        Realizado e =new Realizado();
-        FormCliente h = new FormCliente();
-                
-                        e.setVisible(true);
-                        h.setVisible(false);
-                        setVisible(false);
-        mCliente.CrudEliminarCliente(Integer.parseInt(txtcons_clie.getText()));
-        jcomboCl.removeAllItems(); //Se limpia el formulario.
-        jcomboCl.repaint();
-        
-        
-        
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
     private void jcomboGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomboGActionPerformed
         // TODO add your handling code here:    
         txtgene.setText(jcomboG.getSelectedItem().toString());
@@ -442,6 +403,7 @@ public class FormCliente extends javax.swing.JFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
+        
         Realizado e =new Realizado();
         FormCliente h = new FormCliente();
                 
@@ -500,10 +462,6 @@ public class FormCliente extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_txtgeneActionPerformed
 
-    private void jcheckactivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcheckactivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcheckactivoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -541,7 +499,6 @@ public class FormCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnInsertar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnVolver;
@@ -555,7 +512,6 @@ public class FormCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JCheckBox jcheckactivo;
     private javax.swing.JComboBox<String> jcomboCP;
     private javax.swing.JComboBox<String> jcomboCl;
     private javax.swing.JComboBox<String> jcomboG;
