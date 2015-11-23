@@ -120,7 +120,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nombre Consecionario:"/>
+        <Property name="text" type="java.lang.String" value="Nombre Concesionario:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtnombcons">
@@ -188,6 +188,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtID">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIDActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -11,18 +11,18 @@ import vehiculos.*;
  *
  * @author L3Li
  */
-public class Concesionario extends javax.swing.JFrame {
+public class FormConcesionario extends javax.swing.JFrame {
 
     
-   Cons miConcesionario =new Cons();
+   vehiculos.Concesionario miConcesionario =new vehiculos.Concesionario();
     
     
     /**
      * Creates new form Concesionario
      */
-    public Concesionario() {
+    public FormConcesionario() {
         initComponents();
-        Cons[] miLista = miConcesionario.crudListaPoblado();             
+        vehiculos.Concesionario[] miLista = miConcesionario.crudListaPoblado();             
         for(int cont=0; cont < miLista.length; cont++){
         cbxpoblado.addItem(miLista[cont].getcodi_pobl()+ "-"+miLista[cont].getnombre_muni()+""+miLista[cont].getnomb_cons());
         }
@@ -58,7 +58,7 @@ public class Concesionario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Nombre Consecionario:");
+        jLabel1.setText("Nombre Concesionario:");
 
         jLabel2.setText("Poblado:");
 
@@ -92,6 +92,12 @@ public class Concesionario extends javax.swing.JFrame {
         btnbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnbuscarActionPerformed(evt);
+            }
+        });
+
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
             }
         });
 
@@ -212,6 +218,10 @@ public class Concesionario extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnbuscarActionPerformed
 
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -231,20 +241,21 @@ public class Concesionario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Concesionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormConcesionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Concesionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormConcesionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Concesionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormConcesionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Concesionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormConcesionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Concesionario().setVisible(true);
+                new FormConcesionario().setVisible(true);
             }
         });
     }

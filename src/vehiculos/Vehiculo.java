@@ -26,6 +26,7 @@ import javax.swing.JOptionPane;
             private String line_vehi = new String();
             private String plac_vehi = new String();
             private String colo_vehi = new String();
+            private String estado = new String();
             private Conexion conexion;
 
 //-------------------------------------------------------------------------------
@@ -37,7 +38,7 @@ import javax.swing.JOptionPane;
             }
         //Constructor que pide todos los parametros
 
-            public Vehiculo(int Icons_vehi, int Icons_cons, String Imarc_vehi, String Imode_vehi, String Iline_vehi, String Iplac_vehi, String Icolo_vehi){
+            public Vehiculo(int Icons_vehi, int Icons_cons, String Imarc_vehi, String Imode_vehi, String Iline_vehi, String Iplac_vehi, String Icolo_vehi, String Iestado){
             cons_vehi = Icons_vehi;
             cons_cons = Icons_cons;
             marc_vehi = Imarc_vehi;
@@ -45,6 +46,7 @@ import javax.swing.JOptionPane;
             line_vehi = Iline_vehi;
             plac_vehi = Iplac_vehi;
             colo_vehi = Icolo_vehi;
+            estado = Iestado;
             }
         //Costructor que filtra por consecutivo y crea la instancia con el registro   
             public Vehiculo(int CIcons_vehi){
@@ -108,6 +110,13 @@ import javax.swing.JOptionPane;
             public void setcolo_vehi(String newVal){
                     colo_vehi = newVal;
             }
+            public String getestado(){
+                    return estado;
+            }
+
+            public void setestado(String newVal){
+                    estado = newVal;
+            }
                 
             
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -117,12 +126,15 @@ import javax.swing.JOptionPane;
 
             
             
-             public void CrudInsertarVehiculo(int Icons_cons, String Imarc_vehi, String Imode_vehi, String Iline_vehi, String Iplac_vehi, String Icolo_vehi){
+             public void CrudInsertarVehiculo(int Icons_cons, String Imarc_vehi, String Imode_vehi, String Iline_vehi, String Iplac_vehi, 
+                     String Icolo_vehi, String Iestado){
                 
                 Conexion IC = new Conexion();
                 
                 int intAux;
-                intAux = IC.queryUpdate("INSERT INTO `tabl_vehi`(cons_cons, marc_vehi, mode_vehi, line_vehi, plac_vehi, colo_vehi) VALUES (" + Icons_cons +",'"+ Imarc_vehi +"','"+ Imode_vehi +"','"+ Iline_vehi +"','"+ Iplac_vehi +"','"+ Icolo_vehi + "')");
+                intAux = IC.queryUpdate("INSERT INTO tabl_vehi (cons_cons, marc_vehi, mode_vehi, line_vehi, plac_vehi, colo_vehi) "
+                + "VALUES (" + Icons_cons +",'"+ Imarc_vehi +"','"+ Imode_vehi +"','"+ Iline_vehi +"','"+ Iplac_vehi +"','"+ Icolo_vehi + "','"
+                + Iestado + "')");
                 JOptionPane.showMessageDialog(null, "Se creo el registro con exito", "MENSAJE", 2);
             }
             
@@ -132,7 +144,8 @@ import javax.swing.JOptionPane;
             public void CrudBuscarVehiculo(int Fcons_vehi){
                 
                 Conexion BC = new Conexion();
-                String[][]strResultado = BC.resultadoQuery(BC.queryConsulta("SELECT cons_vehi, cons_cons, marc_vehi, mode_vehi, line_vehi, plac_vehi, colo_vehi FROM tabl_vehi WHERE cons_vehi = " + Fcons_vehi + ";" ));
+                String[][]strResultado = BC.resultadoQuery(BC.queryConsulta("SELECT cons_vehi, cons_cons, marc_vehi, mode_vehi, line_vehi, plac_vehi, "
+                + "colo_vehi, estado FROM tabl_vehi WHERE cons_vehi = " + Fcons_vehi + ";" ));
 
                 cons_vehi = Integer.parseInt(strResultado[0][0]);
                 cons_cons = Integer.parseInt(strResultado[0][1]);
@@ -141,22 +154,23 @@ import javax.swing.JOptionPane;
                 line_vehi = strResultado[0][4];                        
                 plac_vehi = strResultado[0][5];
                 colo_vehi = strResultado[0][6];
+                estado = strResultado[0][7];
                    
             }
 //...............................................................................
 	//Para modificar el registro de un Vehiculo
 
             public void CrudActualizarVehiculo(int Ncons_vehi, int Ncons_cons, String Nmarc_vehi, String Nmode_vehi, 
-                    String Nline_vehi, String Nplac_vehi, String Ncolo_vehi){
+                    String Nline_vehi, String Nplac_vehi, String Ncolo_vehi, String Nestado){
             Conexion AC = new Conexion();
 
-            String[][]strResultado = AC.resultadoQuery(AC.queryConsulta("SELECT `cons_vehi`, `cons_cons` FROM `tabl_vehi`" 
+            String[][]strResultado = AC.resultadoQuery(AC.queryConsulta("SELECT cons_vehi, cons_cons FROM tabl_vehi, estado" 
                     + " WHERE cons_vehi = " + Ncons_vehi + ";" ));
                 
             if (strResultado[0][0]!= null){
-            AC.queryUpdate("UPDATE tabl_vehi SET cons_cons='" + Ncons_cons +"', marc_vehi='"+ Nmarc_vehi 
-                    + "', mode_vehi='"+ Nmode_vehi + "', line_vehi='"+ Nline_vehi 
-                    + "',plac_vehi='"+ Nplac_vehi + "', colo_vehi='"+ Ncolo_vehi + "'WHERE cons_vehi=" + Ncons_vehi +";");
+            AC.queryUpdate("UPDATE tabl_vehi SET cons_cons=" + Ncons_cons +", marc_vehi="+ Nmarc_vehi 
+                    + ", mode_vehi="+ Nmode_vehi + ", line_vehi="+ Nline_vehi + ",plac_vehi="+ Nplac_vehi + ", colo_vehi="+ Ncolo_vehi 
+                    + ", estado="+ Nestado + "'WHERE cons_vehi=" + Ncons_vehi +";");
 
                 cons_vehi = Ncons_vehi;
                 cons_cons = Ncons_cons;
@@ -165,6 +179,7 @@ import javax.swing.JOptionPane;
                 line_vehi = Nline_vehi;
                 plac_vehi = Nplac_vehi;
                 colo_vehi = Ncolo_vehi;
+                estado = Nestado;
 
             String strMensaje = "Se modificó el vehículo con éxito";
             JOptionPane.showMessageDialog(null, strMensaje,  "MODIFICAR VEHÍCULO", 2);
@@ -186,8 +201,8 @@ import javax.swing.JOptionPane;
             Conexion CC = new Conexion();
 
             try{
-            String [][]strRes = CC.resultadoQuery(CC.queryConsulta("SELECT COUNT(`id_vehiculo`) "
-                + "AS TANTOS FROM tb_vehiculos;"));
+            String [][]strRes = CC.resultadoQuery(CC.queryConsulta("SELECT COUNT(cons_vehi) "
+                + "AS TANTOS FROM tabl_vehi;"));
             
             intTama = Integer.parseInt(strRes[0][0]);
             System.out.print("\n El tamaño es:" + intTama + "\n");
@@ -195,13 +210,13 @@ import javax.swing.JOptionPane;
             Vehiculo [] mVehiculos = new Vehiculo[intTama]; //Constructor Arreglo
                         
             strRes = CC.resultadoQuery(CC.queryConsulta("SELECT cons_vehi, cons_cons, marc_vehi, mode_vehi, line_vehi,"
-                    + "plac_vehi, colo_vehi FROM tabl_vehi "));
+                    + "plac_vehi, colo_vehi, estado FROM tabl_vehi "));
 
             for (intCont=0; intCont<(intTama); intCont++){
                     Vehiculo tabl_vehiAux = new Vehiculo (Integer.parseInt(strRes[intCont][0]), 
                     Integer.parseInt(strRes[intCont][1]), strRes[intCont][2], 
                     strRes[intCont][3], strRes[intCont][4], 
-                    strRes[intCont][5], strRes[intCont][6]); // Crea instancia
+                    strRes[intCont][5], strRes[intCont][6],strRes[intCont][7]); // Crea instancia
                     mVehiculos[intCont]=tabl_vehiAux;
             }
             
@@ -215,6 +230,7 @@ import javax.swing.JOptionPane;
             System.out.print(ex);
             return null;
             }
+    
         }
 //==========================================================================================================================
 // Main para hacer pruebas             
@@ -229,7 +245,7 @@ import javax.swing.JOptionPane;
         //pueba para buscar un Vehiculo
         mR.CrudBuscarVehiculo(1); 
         mR.CrudBuscarVehiculo(1);
-               System.out.print("\n-El nuevo Vehiculo es: " + mR.getcons_vehi()+ " - " + mR.getcons_cons() + " - " + mR.getmarc_vehi()+ " - " +  mR.getmode_vehi() +" - " + mR.getline_vehi() +" - " + mR.getplac_vehi() +" - " + mR.getcolo_vehi() + " - " +  "\n");
+               System.out.print("\n-El nuevo Vehiculo es: " + mR.getcons_vehi()+ " - " + mR.getcons_cons() + " - " + mR.getmarc_vehi()+ " - " +  mR.getmode_vehi() +" - " + mR.getline_vehi() +" - " + mR.getplac_vehi() +" - " + mR.getcolo_vehi() + " - " +mR.getestado() + "\n");
 //        //...................................................................................
 //        //Prueba para actualizar un Vehiculo
 //                mR.CrudActualizarVehiculo(1, 1, 1, 1, 1, 20000000, "HFX-545", "200945058", "0009794583", "100cm^3", "2013", "Optra");

@@ -15,14 +15,14 @@ import javax.swing.JOptionPane;
 public class Conexion {
 
 
-    public String user = "postgres";
-    public String password = "1234";
+    public String user = "udec";
+    public String password = "udec";
     
   
     private String strIp = "localhost" ;                       	//Dirección IP del servidor donde este la base de datos
     private String strPuerto = "5432" ;                             //Puerto del servidor de bases de datos
     private String strTipo = "postgresql" ;                               //Tipo de Servidor
-    private String strBD = "bd" ;                                	//Nombre de la base de datos
+    private String strBD = "udec" ;                                	//Nombre de la base de datos
     private String strClassForName = "org.postgresql.Driver" ;          				//Para crear la clase por nombre segun el tipo y el driver
     private String strUrl;
     

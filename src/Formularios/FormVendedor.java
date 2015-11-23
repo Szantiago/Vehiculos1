@@ -6,7 +6,7 @@
 package Formularios;
 
 import javax.swing.JOptionPane;
-import vehiculos.Cons;
+import vehiculos.Concesionario;
 import vehiculos.Vendedor;
 
 /**
@@ -16,8 +16,8 @@ import vehiculos.Vendedor;
 public class FormVendedor extends javax.swing.JFrame {
     Vendedor miV = new Vendedor();
     
-    Cons miC =new Cons();
-    Cons[] miLista =miC.crudListaConsecionario();//array de marcas
+    Concesionario miC =new Concesionario();
+    Concesionario[] miLista =miC.crudListaConsecionario();//array de marcas
     boolean b;
     /**
      * Creates new form FormVendedor
@@ -28,7 +28,7 @@ public class FormVendedor extends javax.swing.JFrame {
         b=true;
         
         b=true;
-        Cons[] miLista =miC.crudListaConsecionario();           
+        Concesionario[] miLista =miC.crudListaConsecionario();           
         for(int cont=0; cont < miLista.length; cont++ ){
         jComboBox1.addItem(miLista[cont].getcons_cons()+" - "+miLista[cont].getnomb_cons());
         }
@@ -197,8 +197,8 @@ public class FormVendedor extends javax.swing.JFrame {
         miC = miLista[jComboBox1.getSelectedIndex()];
         
         jTextField3.setText(miC.getnomb_cons()); 
-        Cons mD = new Cons();
-        Cons[] lD = mD.crudListaConsecionario();
+        Concesionario mD = new Concesionario();
+        Concesionario[] lD = mD.crudListaConsecionario();
         mD=lD[jComboBox1.getSelectedIndex()];
         int varInD=mD.getcons_cons();
         jTextField3.setText(""+varInD);

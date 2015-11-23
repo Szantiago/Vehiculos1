@@ -83,7 +83,7 @@ public class FormInicio extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         FormInicio i = new FormInicio();
-        Concesionario c = new Concesionario();
+        FormConcesionario c = new FormConcesionario();
         i.setVisible(false);
         c.setVisible(true);
         setVisible(false);

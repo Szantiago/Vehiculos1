@@ -11,7 +11,7 @@ import vehiculos.*;
  *
  * @author L3Li
  */
-public class Cons {
+public class Concesionario {
     	private int cons_cons;
 	private String nomb_cons = new String();
 	private int cons_muni ;
@@ -22,20 +22,20 @@ public class Cons {
         private int cons_conse;
 	private Conexion conMiconexion;
         
-        public Cons (){}
+        public Concesionario (){}
         
-        public Cons(int Ccons_cons, String Cnomb_cons){
+        public Concesionario(int Ccons_cons, String Cnomb_cons){
         cons_cons = Ccons_cons;
         nomb_cons=Cnomb_cons;
         
         }
         
-        public Cons(int Ccons_muni, String Ccodi_pobl, String Cnombre_muni){
+        public Concesionario(int Ccons_muni, String Ccodi_pobl, String Cnombre_muni){
         cons_muni = Ccons_muni;
         codi_pobl=Ccodi_pobl;
         nombre_muni= Cnombre_muni;
         }
-        public Cons(int Ccons_consr, String Cnomb_cons, String Ccodi_pobl, String Ctele_cons, String Cdire_cons){
+        public Concesionario(int Ccons_consr, String Cnomb_cons, String Ccodi_pobl, String Ctele_cons, String Cdire_cons){
            
 	}
         
@@ -61,8 +61,17 @@ public class Cons {
          public String getcodi_pobl(){
 		return codi_pobl;
          }
+         
+         public void setcodi_pobl(String newVal){
+		nomb_cons = newVal;
+           } 
+         
          public int getcons_muni(){
 		return cons_muni;
+         }
+         
+         public void setcons_muni(){
+             
          }
          
          public String getnombre_muni (){
@@ -73,10 +82,6 @@ public class Cons {
 		nombre_muni = newVal;
            } 
           
-         public void setcodi_pobl(String newVal){
-		nomb_cons = newVal;
-           }      
-           
          public int gettele_cons(){
 		return tele_cons;
          }
@@ -162,7 +167,7 @@ public class Cons {
             
 	}
         
-        public Cons[] crudListaPoblado(){
+        public Concesionario[] crudListaPoblado(){
 		
             int intCont;
             int intTama = 0;
@@ -179,11 +184,11 @@ public class Cons {
                 strReg = conMiconexion.resultadoQuery(conMiconexion.queryConsulta(
                         "SELECT cons_muni, codi_pobl,nomb_muni FROM tabl_muni where cons_muni < 101 ORDER BY cons_muni;"));                
 
-                Cons [] Lista = new Cons[intTama];
+                Concesionario [] Lista = new Concesionario[intTama];
 
                 for (intCont = 0; intCont <(intTama); intCont++)
                 {
-                    Cons PobladoAux = new Cons (Integer.parseInt(strReg[intCont][0]), 
+                    Concesionario PobladoAux = new Concesionario (Integer.parseInt(strReg[intCont][0]), 
                             strReg[intCont][1],strReg[intCont][2]);
                                         
                     Lista[intCont] = PobladoAux;
@@ -200,7 +205,7 @@ public class Cons {
             }          
 	}
         
-        public Cons[] crudListaConsecionario(){
+        public Concesionario[] crudListaConsecionario(){
 		
             int intCont;
             int intTama = 0;
@@ -217,11 +222,11 @@ public class Cons {
                 strReg = conMiconexion.resultadoQuery(conMiconexion.queryConsulta(
                         "SELECT cons_cons, nomb_cons FROM tabl_cons ORDER BY cons_cons;"));                
 
-                Cons [] Lista = new Cons[intTama];
+                Concesionario [] Lista = new Concesionario[intTama];
 
                 for (intCont = 0; intCont <(intTama); intCont++)
                 {
-                    Cons ConsecioAux = new Cons (Integer.parseInt(strReg[intCont][0]), 
+                    Concesionario ConsecioAux = new Concesionario (Integer.parseInt(strReg[intCont][0]), 
                             strReg[intCont][1]);
                                         
                     Lista[intCont] = ConsecioAux;
@@ -250,13 +255,13 @@ public class Cons {
   
 //Prueba clase Concesionario
     
-        Cons miObjeto = new Cons();
+        Concesionario miObjeto = new Concesionario();
         
  //...................................................................................
       
 
 //se crea el vector para recibir el vector de Poblado
-        Cons[] lisTabla = miObjeto.crudListaConsecionario();
+        Concesionario[] lisTabla = miObjeto.crudListaConsecionario();
         
         System.out.print("\n\t\t La lista de poblado: \n" );
         
