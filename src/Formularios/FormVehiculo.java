@@ -9,42 +9,44 @@ import java.awt.Color;
 import vehiculos.Vehiculo;
 import vehiculos.Concesionario;
 import javax.swing.JOptionPane;
+
 /**
- 
+ *
  * @author peace
  */
 public class FormVehiculo extends javax.swing.JFrame {
-       Vehiculo mivehiculo = new Vehiculo();
-       Vehiculo [] miListaVh =  mivehiculo.CrudListaVehiculo();
-       boolean p;
-       Concesionario miconcesionario = new Concesionario();//Crear constructor vacio de la clase ctMarca
-       Concesionario [] miListaC = miconcesionario.crudListaConsecionario();
-       boolean c;
-               
+
+    Vehiculo mivehiculo = new Vehiculo();
+    Vehiculo[] miListaVh = mivehiculo.CrudListaVehiculo();
+    boolean p;
+    Concesionario miconcesionario = new Concesionario();//Crear constructor vacio de la clase ctMarca
+    Concesionario[] miListaC = miconcesionario.crudListaConsecionario();
+    boolean c;
+
     /**
      * Creates new form FormVehiculo
      */
     public FormVehiculo() {
         initComponents();
-        this.setLocation(300,120);//En esta instancia(this)cambiar(set)la posición(Location)
-        this.setSize(540,480);
- //.................................
+        this.setLocation(300, 120);//En esta instancia(this)cambiar(set)la posición(Location)
+        this.setSize(540, 480);
+        //.................................
         //Contador del formulario        
-        p=true;
-        for(int intcont=0; intcont < miListaVh.length; intcont++ ){
-        jComboVh.addItem(miListaVh[intcont].getcons_vehi()+" - "+ miListaVh[intcont].getcons_cons() 
-                +" - "+ miListaVh[intcont].getmarc_vehi()+" - "+ miListaVh[intcont].getmode_vehi()
-                +" - "+miListaVh[intcont].getline_vehi()+" - "+miListaVh[intcont].getplac_vehi()
-                +" - "+miListaVh[intcont].getcolo_vehi()+" - "+miListaVh[intcont].getestado());                         
-            }
-        c=true;
-        for(int intcont=0; intcont < miListaC.length; intcont++ ){
-        jComboC.addItem(miListaC[intcont].getcons_cons()+" - "+ miListaC[intcont].getnomb_cons() 
-                +" - "+ miListaC[intcont].getcodi_pobl()+" - "+ miListaC[intcont].gettele_cons()
-                +" - "+miListaC[intcont].getdire_cons()
-                );  
-            }        
-      
+        p = true;
+        for (int intcont = 0; intcont < miListaVh.length; intcont++) {
+            jComboVh.addItem(miListaVh[intcont].getcons_vehi() + " - " + miListaVh[intcont].getcons_cons()
+                    + " - " + miListaVh[intcont].getmarc_vehi() + " - " + miListaVh[intcont].getmode_vehi()
+                    + " - " + miListaVh[intcont].getline_vehi() + " - " + miListaVh[intcont].getplac_vehi()
+                    + " - " + miListaVh[intcont].getcolo_vehi() + " - " + miListaVh[intcont].getestado());
+        }
+        c = true;
+        for (int intcont = 0; intcont < miListaC.length; intcont++) {
+            jComboC.addItem(miListaC[intcont].getcons_cons() + " - " + miListaC[intcont].getnomb_cons()
+                    + " - " + miListaC[intcont].getcodi_pobl() + " - " + miListaC[intcont].gettele_cons()
+                    + " - " + miListaC[intcont].getdire_cons()
+            );
+        }
+
     }
 
     /**
@@ -57,7 +59,7 @@ public class FormVehiculo extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboVh = new javax.swing.JComboBox<>();
+        jComboVh = new javax.swing.JComboBox<String>();
         jLabel2 = new javax.swing.JLabel();
         txtmarca = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -73,9 +75,9 @@ public class FormVehiculo extends javax.swing.JFrame {
         btnlimpiar = new javax.swing.JButton();
         btnvolver = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jComboEstado = new javax.swing.JComboBox<>();
+        jComboEstado = new javax.swing.JComboBox<String>();
         jLabel8 = new javax.swing.JLabel();
-        jComboC = new javax.swing.JComboBox<>();
+        jComboC = new javax.swing.JComboBox<String>();
         txtestado = new javax.swing.JTextField();
         txtbuscar = new javax.swing.JTextField();
         btnbuscar = new javax.swing.JButton();
@@ -150,7 +152,7 @@ public class FormVehiculo extends javax.swing.JFrame {
 
         jLabel7.setText("Estado");
 
-        jComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        jComboEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
         jComboEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboEstadoActionPerformed(evt);
@@ -249,7 +251,7 @@ public class FormVehiculo extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnbuscar))
@@ -309,35 +311,34 @@ public class FormVehiculo extends javax.swing.JFrame {
 
     private void jComboVhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboVhActionPerformed
         // TODO add your handling code here:
-        if(p){
-        Vehiculo[] miLista = mivehiculo.CrudListaVehiculo();
-        mivehiculo = miLista[jComboVh.getSelectedIndex()];
+        if (p) {
+            Vehiculo[] miLista = mivehiculo.CrudListaVehiculo();
+            mivehiculo = miLista[jComboVh.getSelectedIndex()];
 
-        txtmarca.setText(" " + mivehiculo.getmarc_vehi());
-        txtmodelo.setText(" " + mivehiculo.getmode_vehi());
-        txtlinea.setText(" " + mivehiculo.getline_vehi());
-        txtplaca.setText(" " + mivehiculo.getplac_vehi());
-        txtcolor.setText(" " + mivehiculo.getcolo_vehi());
-        txtestado.setText(" " + mivehiculo.getestado());
-        
-        btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
-        btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
+            txtmarca.setText(" " + mivehiculo.getmarc_vehi());
+            txtmodelo.setText(" " + mivehiculo.getmode_vehi());
+            txtlinea.setText(" " + mivehiculo.getline_vehi());
+            txtplaca.setText(" " + mivehiculo.getplac_vehi());
+            txtcolor.setText(" " + mivehiculo.getcolo_vehi());
+            txtestado.setText(" " + mivehiculo.getestado());
+
+            btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
+            btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
         }
     }//GEN-LAST:event_jComboVhActionPerformed
 
     private void btninsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertarActionPerformed
         // TODO add your handling code here:
-        Realizado e =new Realizado();
+        Realizado e = new Realizado();
         FormVehiculo h = new FormVehiculo();
-                
+
         e.setVisible(true);
         h.setVisible(false);
         setVisible(false);
-        
-        mivehiculo.CrudInsertarVehiculo(miconcesionario.getcons_cons(), txtmarca.getText(), txtmodelo.getText(),txtlinea.getText(),
-        txtplaca.getText(), txtcolor.getText(), txtestado.getText());                                                                                                  
-       
-        
+
+        mivehiculo.CrudInsertarVehiculo(miconcesionario.getcons_cons(), txtmarca.getText(), txtmodelo.getText(), txtlinea.getText(),
+                txtplaca.getText(), txtcolor.getText(), txtestado.getText());
+
         txtconcesionario.setText("");
         txtmarca.setText(""); // Entrega el valor en los campos de texto  
         txtmodelo.setText(""); // Entrega el valor en los campos de texto
@@ -345,18 +346,18 @@ public class FormVehiculo extends javax.swing.JFrame {
         txtplaca.setText(""); // Entrega el valor en los campos de texto
         txtcolor.setText(""); // Entrega el valor en los campos de texto
         txtestado.setText(""); // Entrega el valor en los campos de texto
-        
+
         btnactualizar.setEnabled(false); // Se mantiene el botón actualizar como falso
     }//GEN-LAST:event_btninsertarActionPerformed
 
     private void jComboCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboCActionPerformed
         // TODO add your handling code here:
-        if(c){
-        txtconcesionario.setText(jComboC.getSelectedItem().toString());    
-        Concesionario[] miLista = miconcesionario.crudListaConsecionario();
-        miconcesionario = miLista[jComboC.getSelectedIndex()];
-        btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
-        btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
+        if (c) {
+            txtconcesionario.setText(jComboC.getSelectedItem().toString());
+            Concesionario[] miLista = miconcesionario.crudListaConsecionario();
+            miconcesionario = miLista[jComboC.getSelectedIndex()];
+            btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
+            btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
         }
 
 
@@ -369,14 +370,14 @@ public class FormVehiculo extends javax.swing.JFrame {
 
     private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
         // TODO add your handling code here:
-        Realizado e =new Realizado();
+        Realizado e = new Realizado();
         FormVehiculo h = new FormVehiculo();
-                
-                        e.setVisible(true);
-                        h.setVisible(false);
-                        setVisible(false);
-        mivehiculo.CrudActualizarVehiculo(mivehiculo.getcons_vehi(),miconcesionario.getcons_cons(),
-                txtmarca.getText(),txtmodelo.getText(), txtlinea.getText(), txtplaca.getText(), txtcolor.getText(), txtestado.getText()); //Se importa el método y los parámetros necesarios
+
+        e.setVisible(true);
+        h.setVisible(false);
+        setVisible(false);
+        mivehiculo.CrudActualizarVehiculo(Integer.parseInt(txtbuscar.getText()), jComboC.getSelectedIndex(),
+                txtmarca.getText(), txtmodelo.getText(), txtlinea.getText(), txtplaca.getText(), txtcolor.getText(), txtestado.getText()); //Se importa el método y los parámetros necesarios
 
         txtconcesionario.setText("");
         txtmarca.setText(""); // Entrega el valor en los campos de texto
@@ -385,20 +386,20 @@ public class FormVehiculo extends javax.swing.JFrame {
         txtplaca.setText(""); // Entrega el valor en los campos de texto
         txtcolor.setText(""); // Entrega el valor en los campos de texto
         txtestado.setText(""); // Entrega el valor en los campos de texto
-        
+
         btninsertar.setEnabled(false); // Se mantiene el botón actualizar como falso  
     }//GEN-LAST:event_btnactualizarActionPerformed
 
     private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
         // TODO add your handling code here:
-        Realizado e =new Realizado();
+        Realizado e = new Realizado();
         FormVehiculo h = new FormVehiculo();
-                
+
         e.setVisible(true);
         h.setVisible(false);
         setVisible(false);
-                
-        p=false; // Se declara la variable booleana como falsa para no realizar la acción       
+
+        p = false; // Se declara la variable booleana como falsa para no realizar la acción       
         txtmarca.setText(""); // Entrega el valor en los campos de texto
         txtmodelo.setText(""); // Entrega el valor en los campos de texto  
         txtlinea.setText(""); // Entrega el valor en los campos de texto
@@ -408,42 +409,42 @@ public class FormVehiculo extends javax.swing.JFrame {
 
         btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
         btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
-       
+
         jComboVh.removeAllItems(); //Se limpia el formulario.       
-        Vehiculo[] miLista =mivehiculo.CrudListaVehiculo(); 
+        Vehiculo[] miLista = mivehiculo.CrudListaVehiculo();
         // Se crea un for para borrar el formulario y que el jCombo no este vacio
 
-        for(int intcont=0; intcont < miLista.length; intcont++ ){
-        jComboVh.addItem(miLista[intcont].getcons_vehi()+" - "+ miLista[intcont].getmarc_vehi()
-                +" - "+ miLista[intcont].getmode_vehi()+" - "+miLista[intcont].getline_vehi()
-                +" - "+ miLista[intcont].getplac_vehi()+" - "+miLista[intcont].getcolo_vehi()
-                +" - "+miLista[intcont].getestado()); 
-        jComboVh.setSelectedIndex(0); // Posiciona el jcombo en la posición 0 
-            }           
-        p=true;
+        for (int intcont = 0; intcont < miLista.length; intcont++) {
+            jComboVh.addItem(miLista[intcont].getcons_vehi() + " - " + miLista[intcont].getmarc_vehi()
+                    + " - " + miLista[intcont].getmode_vehi() + " - " + miLista[intcont].getline_vehi()
+                    + " - " + miLista[intcont].getplac_vehi() + " - " + miLista[intcont].getcolo_vehi()
+                    + " - " + miLista[intcont].getestado());
+            jComboVh.setSelectedIndex(0); // Posiciona el jcombo en la posición 0 
+        }
+        p = true;
 //.......................................................................................................................
-        c=false; // Se declara la variable booleana como falsa para no realizar la acción
+        c = false; // Se declara la variable booleana como falsa para no realizar la acción
 
         btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
         btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
-       
+
         jComboC.removeAllItems(); //Se limpia el formulario.
-        Concesionario[] miLista2 =miconcesionario.crudListaConsecionario();
-         
+        Concesionario[] miLista2 = miconcesionario.crudListaConsecionario();
+
         // Se crea un for para borrar el formulario y que el jCombo no este vacio
-        for(int intcont=0; intcont < miLista2.length; intcont++ ){
-        jComboC.addItem(miListaC[intcont].getcons_cons()+" - "+miListaC[intcont].getnomb_cons()
-        +" - "+ miListaC[intcont].getcodi_pobl()+" - "+miListaC[intcont].gettele_cons()
-        +" - "+ miListaC[intcont].getdire_cons());    
-        jComboC.setSelectedIndex(0); // Posiciona el jcombo en la posició 0
-            }
-        c=true; // Se declara la variable booleana como verdadera para que luego se pueda realizar la acción
+        for (int intcont = 0; intcont < miLista2.length; intcont++) {
+            jComboC.addItem(miListaC[intcont].getcons_cons() + " - " + miListaC[intcont].getnomb_cons()
+                    + " - " + miListaC[intcont].getcodi_pobl() + " - " + miListaC[intcont].gettele_cons()
+                    + " - " + miListaC[intcont].getdire_cons());
+            jComboC.setSelectedIndex(0); // Posiciona el jcombo en la posició 0
+        }
+        c = true; // Se declara la variable booleana como verdadera para que luego se pueda realizar la acción
     }//GEN-LAST:event_btnlimpiarActionPerformed
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
         // TODO add your handling code here:
         mivehiculo.CrudBuscarVehiculo((Integer.parseInt(txtbuscar.getText())));
-        
+
         jComboC.setSelectedIndex(miconcesionario.getcons_cons());
         txtmarca.setText(mivehiculo.getmarc_vehi());
         txtmodelo.setText(mivehiculo.getmode_vehi());
@@ -451,13 +452,15 @@ public class FormVehiculo extends javax.swing.JFrame {
         txtplaca.setText(mivehiculo.getplac_vehi());
         txtcolor.setText(mivehiculo.getcolo_vehi());
         jComboEstado.setSelectedIndex(0);
-        
+
         btninsertar.setEnabled(false);
     }//GEN-LAST:event_btnbuscarActionPerformed
 
     private void txtconcesionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtconcesionarioActionPerformed
         // TODO add your handling code here:
+
         txtconcesionario.setText(jComboC.getSelectedItem().toString());
+
     }//GEN-LAST:event_txtconcesionarioActionPerformed
 
     private void txtestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtestadoActionPerformed

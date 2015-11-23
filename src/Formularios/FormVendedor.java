@@ -212,7 +212,7 @@ public class FormVendedor extends javax.swing.JFrame {
 
     private void btninsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertarActionPerformed
         
-       miV.crudCrearVendedor(txtnomb.getText(), txtcons.getText(), Integer.parseInt(txttel.getText()), txtestado.getText());
+       miV.crudCrearVendedor(txtnomb.getText(), Integer.parseInt(txtcons.getText()), Integer.parseInt(txttel.getText()), txtestado.getText());
        
        txtcons.setText("");
        txtnomb.setText("");
@@ -238,7 +238,6 @@ public class FormVendedor extends javax.swing.JFrame {
         b=false;
        txtnomb.setText("");
        txttel.setText("");
-       txtbuscar.setText("");
        txtcons.setText("");
        txtestado.setText("");
        jComboV.removeAllItems();
@@ -264,7 +263,7 @@ public class FormVendedor extends javax.swing.JFrame {
                         e.setVisible(true);
                         h.setVisible(false);
                         setVisible(false);
-        miV.crudActualizarVend(miV.getIntConsVend(),txtnomb.getText(),txtcons.getText(),txtestado.getText()); //Se importa el método y los parámetros necesarios
+        miV.crudActualizarVend(miV.getIntConsVend(),txtnomb.getText(),Integer.parseInt(txtcons.getText()),txtestado.getText()); //Se importa el método y los parámetros necesarios
 
         txtnomb.setText("");
         txtcons.setText(""); // Entrega el valor en los campos de texto
