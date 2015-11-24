@@ -247,8 +247,14 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtcons">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtconsActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtconsvend">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtconsvendActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtcv">
       <Events>
@@ -256,6 +262,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtesto">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtestoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

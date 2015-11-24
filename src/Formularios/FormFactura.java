@@ -16,33 +16,40 @@ import javax.swing.JOptionPane;
  * @author peace
  */
 public class FormFactura extends javax.swing.JFrame {
-    Factura mif = new Factura(); //Crear constructor vacio de la clase tbVehiculo
+    Factura mif = new Factura(); 
     Factura [] miListaf =  mif.CrudListaFactura();
 
-    Concesionario mic = new Concesionario();//Crear constructor vacio de la clase ctMarca
+    Concesionario mic = new Concesionario();
     Concesionario [] miListac = mic.crudListaConsecionario();
     
-    Cliente micl = new Cliente();//Crear constructor vacio de la clase ctEstilo
+    Cliente micl = new Cliente();
     Cliente [] miListacl = micl.CrudListaCliente();
     
-    Vendedor miv = new Vendedor();//Crear constructor vacio de la clase ctColor
+    Vendedor miv = new Vendedor();
     Vendedor [] miListav = miv.crudListaVend();
     
-    Vehiculo mivh = new Vehiculo();//Crear constructor vacio de la clase ctTipoCombustible
+    Vehiculo mivh = new Vehiculo();
     Vehiculo [] miListavh = mivh.CrudListaVehiculo();
     
     boolean f,c,cl,v,vh;
-    /**
-     * Creates new form FormFactura
-     */
+  
+    
+    
     public FormFactura() {
         initComponents();
-        this.setLocation(300,120);//En esta instancia(this)cambiar(set)la posición(Location)
+        txtestado.setVisible(false);
+        txtc.setVisible(false);
+        txtv.setVisible(false);
+        txtcons.setVisible(false);
+        txtvh.setVisible(false);
+        this.setLocation(300,120);
         this.setSize(540,420);
     
 //.................................
-        //Contador del formulario   
+  
         f=true;
+        Factura[] miListaf =mif.CrudListaFactura();
+        
         for(int intcont=0; intcont < miListaf.length; intcont++ ){
         jCombof.addItem(miListaf[intcont].getcons_fact()+" - "+ miListaf[intcont].getnume_fact()
                 +" - "+ miListaf[intcont].getfech_fact()+" - "+ miListaf[intcont].getcons_clie()
@@ -51,24 +58,28 @@ public class FormFactura extends javax.swing.JFrame {
             }
         
         cl=true;
+        Cliente[] miListacl =micl.CrudListaCliente();
         for(int intcont=0; intcont < miListacl.length; intcont++ ){
         jCombocl.addItem(miListacl[intcont].getcons_clie()+" - "+miListacl[intcont].getprim_nomb()+" - "
-         + miListacl[intcont].getprim_apel()+ miListacl[intcont].getcent_pobl()+ miListacl[intcont].getestado());  
+         + miListacl[intcont].getprim_apel()+miListacl[intcont].getestado());  
             }
         
-        v=true;        
+        v=true;
+        Vendedor[] miListav =miv.crudListaVend();        
         for(int intcont=0; intcont < miListav.length; intcont++ ){
         jCombov.addItem(miListav[intcont].getIntConsVend()+ miListav[intcont].getStringNomVend());  
 
             }
         
         c=true;
+        Concesionario[] miListac =mic.crudListaConsecionario();
         for(int intcont=0; intcont < miListac.length; intcont++ ){
         jComboc.addItem(miListac[intcont].getcons_cons()+" - "+miListac[intcont].getdire_cons()+ miListac[intcont].getestado());
 
             }
         
         vh=true;
+        Vehiculo[] miListavh=mivh.CrudListaVehiculo();
         for(int intcont=0; intcont < miListavh.length; intcont++ ){
         jCombovh.addItem(miListavh[intcont].getmarc_vehi()+" - "+miListavh[intcont].getmode_vehi()+ miListavh[intcont].getplac_vehi()
                 + miListavh[intcont].getcolo_vehi() + miListavh[intcont].getestado());    
@@ -126,7 +137,7 @@ public class FormFactura extends javax.swing.JFrame {
 
         jLabel2.setText("Estado");
 
-        jComboestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        jComboestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "activo", "inactivo" }));
         jComboestado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboestadoActionPerformed(evt);
@@ -376,8 +387,13 @@ public class FormFactura extends javax.swing.JFrame {
     private void jCombofActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCombofActionPerformed
         // TODO add your handling code here:
         if(f){
-        Factura[] miLista = mif.CrudListaFactura();
-        mif = miLista[jCombof.getSelectedIndex()];
+        Factura[] miListaf = mif.CrudListaFactura();
+        mif = miListaf[jCombof.getSelectedIndex()];
+ 
+        Factura mf = new Factura();
+        Factura[] lf = mf.CrudListaFactura();
+        mf=lf[jCombof.getSelectedIndex()];
+        int var=mf.getcons_fact();
 
         txtnumfact.setText(mif.getnume_fact());
         txtfecha.setText(mif.getfech_fact());
@@ -385,7 +401,13 @@ public class FormFactura extends javax.swing.JFrame {
         txtv.setText(" " + mif.getcons_vend());
         txtcons.setText(" " + mif.getcons_cons());
         txtvh.setText(" " + mif.getcons_vehi());
-        txtestado.setText(" " + mif.getestado());
+        txtestado.setText(""+mif.getestado());
+        jCombocl.setSelectedIndex(Integer.parseInt(txtc.getText()));
+        jCombov.setSelectedIndex(Integer.parseInt(txtv.getText()));
+        jComboc.setSelectedIndex(Integer.parseInt(txtcons.getText()));
+        jCombovh.setSelectedIndex(Integer.parseInt(txtvh.getText()));
+        jComboestado.setSelectedItem(txtestado.getText());
+;
         
         btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
         btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
@@ -394,176 +416,199 @@ public class FormFactura extends javax.swing.JFrame {
 
     private void btninsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertarActionPerformed
         // TODO add your handling code here:
-        mif.CrudInsertarFactura(txtnumfact.getText(), txtfecha.getText(),micl.getcons_clie(), miv.getIntConsVend(), 
-                mic.getcons_cons(), mivh.getcons_vehi(), txtestado.getText());                                                                                                  
+        mif.CrudInsertarFactura(txtnumfact.getText(), txtfecha.getText(), Integer.parseInt(txtc.getText()), Integer.parseInt(txtv.getText()), 
+                Integer.parseInt(txtcons.getText()), Integer.parseInt(txtvh.getText()), jComboestado.getSelectedItem().toString());                                                                                                  
        
-        jCombof.setSelectedIndex(mif.getcons_clie());
-        jCombof.setSelectedIndex(mif.getcons_vend());
-        jCombof.setSelectedIndex(mif.getcons_cons());
-        jCombof.setSelectedIndex(mif.getcons_vehi());
-        txtnumfact.setText(""); // Entrega el valor en los campos de texto  
-        txtfecha.setText(""); // Entrega el valor en los campos de texto
-        txtestado.setText(""); // Entrega el valor en los campos de texto
-   
+        txtc.setText("");
+        txtv.setText("");
+        txtcons.setText("");
+        txtvh.setText("");
+        txtnumfact.setText("");  
+        txtfecha.setText(""); 
+        txtestado.setText(""); 
+        JOptionPane.showMessageDialog(null, "Se creo el registro", "Creacion de Facturas",2);
         
         btnactualizar.setEnabled(false); // Se mantiene el botón actualizar como falso
     }//GEN-LAST:event_btninsertarActionPerformed
 
     private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
-        // TODO add your handling code here:
-        mif.CrudActualizarFactura(mif.getcons_fact(), txtnumfact.getText(), txtfecha.getText(),jCombocl.getSelectedIndex(), 
-                jCombov.getSelectedIndex(),jComboc.getSelectedIndex(), jCombovh.getSelectedIndex(), txtestado.getText());
+                     
+        mif.CrudActualizarFactura(mif.getcons_fact(), txtnumfact.getText(), txtfecha.getText(),Integer.parseInt(txtc.getText()), 
+                Integer.parseInt(txtv.getText()),Integer.parseInt(txtcons.getText()), Integer.parseInt(txtvh.getText()), txtestado.getText());
        
-        txtnumfact.setText(""); // Entrega el valor en los campos de texto  
-        txtfecha.setText(""); // Entrega el valor en los campos de texto
+        txtnumfact.setText("");  
+        txtfecha.setText(""); 
         txtc.setText("");
         txtv.setText("");
         txtcons.setText("");
         txtvh.setText("");
-        txtestado.setText(""); // Entrega el valor en los campos de texto
+        txtestado.setText(""); 
         
-        btninsertar.setEnabled(false); // Se mantiene el botón actualizar como falso  
+        btninsertar.setEnabled(false);   
     }//GEN-LAST:event_btnactualizarActionPerformed
 
     private void jComboclActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboclActionPerformed
         // TODO add your handling code here:
         if(cl){
+        micl= miListacl[jCombocl.getSelectedIndex()];
+        Cliente mc = new Cliente();
+        Cliente[] lc = mc.CrudListaCliente();
+        mc=lc[jCombocl.getSelectedIndex()];
+        int var=mc.getcons_clie();
+        
         txtc.setText(jCombocl.getSelectedItem().toString());
         Cliente[] miLista = micl.CrudListaCliente();
         micl = miLista[jCombocl.getSelectedIndex()];
-
-        btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
-        btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
+        
+        btninsertar.setEnabled(true); 
+        btnactualizar.setEnabled(true); 
         }
     }//GEN-LAST:event_jComboclActionPerformed
 
     private void jCombovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCombovActionPerformed
         // TODO add your handling code here:
         if(v){
+            miv= miListav[jCombov.getSelectedIndex()];
+        Vendedor mv = new Vendedor();
+        Vendedor[] lv = mv.crudListaVend();
+        mv=lv[jCombov.getSelectedIndex()];
+        int var=mv.getIntConsVend();
+        
         txtv.setText(jCombov.getSelectedItem().toString());
         Vendedor[] miLista = miv.crudListaVend();
         miv = miLista[jCombov.getSelectedIndex()];
-
-        btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
-        btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
+        
+        btninsertar.setEnabled(true); 
+        btnactualizar.setEnabled(true); 
         }
     }//GEN-LAST:event_jCombovActionPerformed
 
     private void jCombocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCombocActionPerformed
-        // TODO add your handling code here:
         if(c){
+            mic= miListac[jComboc.getSelectedIndex()];
+        Concesionario mcs = new Concesionario();
+        Concesionario[] lcs = mcs.crudListaConsecionario();
+        mcs=lcs[jComboc.getSelectedIndex()];
+        int var=mcs.getcons_cons();
+        
         txtc.setText(jComboc.getSelectedItem().toString());
         Concesionario[] miLista = mic.crudListaConsecionario();
         mic = miLista[jComboc.getSelectedIndex()];
-
-        btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
-        btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
+        
+        btninsertar.setEnabled(true); 
+        btnactualizar.setEnabled(true); 
         }
     }//GEN-LAST:event_jCombocActionPerformed
 
     private void jCombovhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCombovhActionPerformed
-        // TODO add your handling code here:
+
         if(vh){
+            mivh= miListavh[jCombovh.getSelectedIndex()];
+        Vehiculo mvh = new Vehiculo();
+        Vehiculo[] lvh = mvh.CrudListaVehiculo();
+        mvh=lvh[jCombovh.getSelectedIndex()];
+        int varInD=mvh.getcons_vehi();
+        
         txtvh.setText(jCombovh.getSelectedItem().toString());
         Vehiculo[] miLista = mivh.CrudListaVehiculo();
         mivh = miLista[jCombovh.getSelectedIndex()];
-
-        btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
-        btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
+        
+        btninsertar.setEnabled(true); 
+        btnactualizar.setEnabled(true); 
         }
     }//GEN-LAST:event_jCombovhActionPerformed
 
     private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
-        // TODO add your handling code here:
-        f=false; // Se declara la variable booleana como falsa para no realizar la acción       
-        txtc.setText(""); // Entrega el valor en los campos de texto
-        txtv.setText(""); // Entrega el valor en los campos de texto  
-        txtcons.setText(""); // Entrega el valor en los campos de texto
-        txtvh.setText(""); // Entrega el valor en los campos de texto
-        txtnumfact.setText(""); // Entrega el valor en los campos de texto
-        txtfecha.setText(""); // Entrega el valor en los campos de texto
-        txtestado.setText(""); // Entrega el valor en los campos de texto
+    
+        f=false;      
+        txtc.setText(""); 
+        txtv.setText("");   
+        txtcons.setText(""); 
+        txtvh.setText(""); 
+        txtnumfact.setText(""); 
+        txtfecha.setText(""); 
+        txtestado.setText("");
 
-        btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
-        btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
+        btninsertar.setEnabled(true); 
+        btnactualizar.setEnabled(true); 
        
-        jCombof.removeAllItems(); //Se limpia el formulario.       
+        jCombof.removeAllItems();      
         Factura[] miLista =mif.CrudListaFactura();
-        // Se crea un for para borrar el formulario y que el jCombo no este vacio
+        
 
         for(int intcont=0; intcont < miLista.length; intcont++ ){
         jCombof.addItem(miLista[intcont].getcons_fact()+" - "+ miLista[intcont].getcons_clie()
                 +" - "+ miLista[intcont].getcons_vend()+" - "+miLista[intcont].getcons_cons()
                 +" - "+ miLista[intcont].getcons_vehi()+" - "+miLista[intcont].getnume_fact()
                 +" - "+miLista[intcont].getfech_fact()+" - "+miLista[intcont].getestado()); 
-        jCombof.setSelectedIndex(0); // Posiciona el jcombo en la posición 0 
+        jCombof.setSelectedIndex(0); 
             }           
         f=true;
 //.......................................................................................................................
-        cl=false; // Se declara la variable booleana como falsa para no realizar la acción
+        cl=false;
 
-        btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
-        btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
+        btninsertar.setEnabled(true); 
+        btnactualizar.setEnabled(true); 
        
-        jCombocl.removeAllItems(); //Se limpia el formulario.
+        jCombocl.removeAllItems(); 
         Cliente[] miLista2 =micl.CrudListaCliente(); 
          
-        // Se crea un for para borrar el formulario y que el jCombo no este vacio
+        
         for(int intcont=0; intcont < miLista2.length; intcont++ ){
         jCombocl.addItem(miLista2[intcont].getcons_clie()+" - "+miLista2[intcont].getprim_nomb()+" - "
          + miLista2[intcont].getprim_apel()+" - "+miLista2[intcont].getestado());    
-        jCombocl.setSelectedIndex(0); // Posiciona el jcombo en la posició 0
+        jCombocl.setSelectedIndex(0); 
             }
-        cl=true; // Se declara la variable booleana como verdadera para que luego se pueda realizar la acción
+        cl=true; 
 //.......................................................................................................................        
-        v=false; // Se declara la variable booleana como falsa para no realizar la acción
-        btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
-        btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
+        v=false; 
+        btninsertar.setEnabled(true); 
+        btnactualizar.setEnabled(true); 
        
-        jCombov.removeAllItems(); //Se limpia el formulario.
+        jCombov.removeAllItems(); 
         Vendedor[] miLista3 =miv.crudListaVend(); 
          
-        // Se crea un for para borrar el formulario y que el jCombo no este vacio
+        
         for(int intcont=0; intcont < miLista3.length; intcont++ ){
         jCombov.addItem(miLista3[intcont].getIntConsVend()+" - "+miLista3[intcont].getStringNomVend()+" - "+miLista3[intcont].getIntTeleVend()
         +" - "+miLista3[intcont].getestado());    
-        jCombov.setSelectedIndex(0); // Posiciona el jcombo en la posició 0
+        jCombov.setSelectedIndex(0);
             }
-        v=true; // Se declara la variable booleana como verdadera para que luego se pueda realizar la acción
+        v=true; 
 //.......................................................................................................................
-        c=false; // Se declara la variable booleana como falsa para no realizar la acción
+        c=false; 
 
-        btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
-        btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
+        btninsertar.setEnabled(true); 
+        btnactualizar.setEnabled(true); 
        
-        jComboc.removeAllItems(); //Se limpia el formulario.
+        jComboc.removeAllItems(); 
         Concesionario[] miLista4 =mic.crudListaConsecionario(); 
          
-        // Se crea un for para borrar el formulario y que el jCombo no este vacio
+        
         for(int intcont=0; intcont < miLista4.length; intcont++ ){
         jComboc.addItem(miLista4[intcont].getcons_cons()+" - "+miLista4[intcont].getnomb_cons()+" - "+miLista4[intcont].getcodi_pobl()
         +" - "+miLista4[intcont].getdire_cons()+" - "+miLista4[intcont].getestado());    
-        jComboc.setSelectedIndex(0); // Posiciona el jcombo en la posició 0
+        jComboc.setSelectedIndex(0); 
             }
         
-        c=true; // Se declara la variable booleana como verdadera para que luego se pueda realizar la acción
+        c=true; 
 //.........................................................................................................................
-        vh=false; // Se declara la variable booleana como falsa para no realizar la acción
+        vh=false; 
         
-        btninsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
-        btnactualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
+        btninsertar.setEnabled(true); 
+        btnactualizar.setEnabled(true); 
        
-        jCombovh.removeAllItems(); //Se limpia el formulario.
+        jCombovh.removeAllItems(); 
         Vehiculo[] miLista5 =mivh.CrudListaVehiculo(); 
          
-        // Se crea un for para borrar el formulario y que el jCombo no este vacio
+        
         for(int intcont=0; intcont < miLista5.length; intcont++ ){
         jCombovh.addItem(miLista5[intcont].getcons_vehi()+" - "+miLista5[intcont].getmarc_vehi()+" - "+miLista5[intcont].getmode_vehi()+" - "+miLista5[intcont].getplac_vehi()
         +" - "+miLista5[intcont].getestado());    
-        jCombovh.setSelectedIndex(0); // Posiciona el jcombo en la posició 0
+        jCombovh.setSelectedIndex(0); 
             }
         
-        vh=true; // Se declara la variable booleana como verdadera para que luego se pueda realizar la acción
+        vh=true; // 
     }//GEN-LAST:event_btnlimpiarActionPerformed
 
     private void txtestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtestadoActionPerformed
@@ -609,7 +654,6 @@ public class FormFactura extends javax.swing.JFrame {
 
     private void jComboestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboestadoActionPerformed
         // TODO add your handling code here:
-        txtestado.setText(jComboestado.getSelectedItem().toString());
     }//GEN-LAST:event_jComboestadoActionPerformed
 
     /**

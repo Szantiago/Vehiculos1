@@ -67,10 +67,10 @@ public class FormVendedor extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jComboC = new javax.swing.JComboBox();
         btnlimpiar = new javax.swing.JButton();
-        jComboV = new javax.swing.JComboBox<String>();
+        jComboV = new javax.swing.JComboBox<>();
         btnvolver = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jComboEstado = new javax.swing.JComboBox<String>();
+        jComboEstado = new javax.swing.JComboBox<>();
         txtcons = new javax.swing.JTextField();
         txtconsvend = new javax.swing.JTextField();
         txtcv = new javax.swing.JTextField();
@@ -136,16 +136,34 @@ public class FormVendedor extends javax.swing.JFrame {
 
         jLabel2.setText("Estado");
 
-        jComboEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "activo", "inactivo" }));
+        jComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "activo", "inactivo" }));
         jComboEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboEstadoActionPerformed(evt);
             }
         });
 
+        txtcons.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtconsActionPerformed(evt);
+            }
+        });
+
+        txtconsvend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtconsvendActionPerformed(evt);
+            }
+        });
+
         txtcv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcvActionPerformed(evt);
+            }
+        });
+
+        txtesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtestoActionPerformed(evt);
             }
         });
 
@@ -359,6 +377,18 @@ public class FormVendedor extends javax.swing.JFrame {
     private void txtcvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcvActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcvActionPerformed
+
+    private void txtconsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtconsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtconsActionPerformed
+
+    private void txtestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtestoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtestoActionPerformed
+
+    private void txtconsvendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtconsvendActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtconsvendActionPerformed
 
     /**
      * @param args the command line arguments

@@ -53,11 +53,11 @@ public class Vendedor {
     
     public String getestado(){
                     return estado;
-            }
+        }
 
             public void setestado(String newVal){
                     estado = newVal;
-            }
+        }
     
     public void crudCrearVendedor(String nom_CVend, int tele_CVend, int cons_CCons, String cestado){
 

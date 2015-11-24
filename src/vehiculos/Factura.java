@@ -4,18 +4,8 @@ package vehiculos;
 import javax.swing.JOptionPane;
 
 /**
- * UNIVERSIDAD DE CUNDINAMARCA
- * Ingenieria de Sistemas
- * Estudiantes: - Leidy Arevalo
- *              - Santiago Lozano
- *              - Victor Pinzon
- * 
- * Profesor: Diego Arce
- * 
  * @author 
  * @version 1.0
- * 
- * Esta clase sirve para manejar el mapeo entre el formulario de insertar cliente y la tabla tabl_fact
  */
 
     public class Factura {
@@ -28,18 +18,12 @@ import javax.swing.JOptionPane;
             private int cons_cons;
             private int cons_vehi;
             private String estado = new String();
-           
+            private Conexion con;
 
-
-//-------------------------------------------------------------------------------
-//Constructores
-
-//       Constructor vacio
             public Factura(){
 
             }
-            
-//       Constructor que pide todos los parametros
+
             public Factura(int Icons_fact, String Inume_fact, String Ifech_fact, int Icons_clie, int Icons_vend, int Icons_cons, 
                     int Icons_vehi, String Iestado){
             cons_fact = Icons_fact;
@@ -51,16 +35,11 @@ import javax.swing.JOptionPane;
             cons_vehi = Icons_vehi;
             estado = Iestado;
             }
-        /**
-        * Costructor que filtra por el consecutivo y crea la instancia con el registro
-        * @param Ccons_fact
-        */    
+
             public Factura(int Ccons_fact){
                 this.CrudBuscarFactura(Ccons_fact);
             }
-            
-//-------------------------------------------------------------------------------
-//Métodos GET y SET
+
 
             public int getcons_fact(){
                     return cons_fact;
@@ -125,63 +104,52 @@ import javax.swing.JOptionPane;
             public void setestado(String newVal){
                     estado = newVal;
             }
-                
-                      
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//Métodos CRUD
-        
-//      Para crear registros en la tabla tabl_fact
+
 
 
              public void CrudInsertarFactura(String Inume_fact, String Ifech_fact, int Icons_clie,
                      int Icons_vend, int Icons_cons, int Icons_vehi, String Iestado){
                 
-                Conexion IC = new Conexion();
+                con= new Conexion();
+                con.queryUpdate("INSERT INTO tabl_fact (nume_fact, fech_fact, cons_clie, cons_vend, cons_cons, cons_vehi, estado) "
+                    + "VALUES( '" + Inume_fact +"','"+ Ifech_fact +"','"+ Icons_clie +"','"+ Icons_vend +"','"+ Icons_cons +"','"+ Icons_vehi +"','"+ Iestado +"');");
                 
-                int intAux;
-                intAux = IC.queryUpdate("INSERT INTO tabl_fact(nume_fact, fech_fact, cons_clie, "
-                        + "cons_vend, cons_cons, cons_vehi, estado) "
-                        + "VALUES ("+ Inume_fact +","+ Ifech_fact +","+ Icons_clie +","+ Icons_vend +","+ Icons_cons +","+ Icons_vehi +","+ Iestado +")");
-                JOptionPane.showMessageDialog(null, "Se creo el registro con exito", "MENSAJE", 2);
+            String strMensaje = "Se creo la factura con éxito";
+            JOptionPane.showMessageDialog(null, strMensaje,  "CREAR Factura", 2); 
             }
             
-//...............................................................................
-	/** para mostrar una FACTURA filtrando por el el consecutivo
-	 * @param Fcons_fact	 */
+
 
             public void CrudBuscarFactura(int Fcons_fact){
                 
-                Conexion BC = new Conexion();
-                String[][]strResultado = BC.resultadoQuery(BC.queryConsulta("SELECT cons_fact, nume_fact, fech_fact, "
-                        + "cons_clie, cons_vend, cons_cons, cons_vehi, estado FROM tabl_fact WHERE cons_fact = " 
-                        + Fcons_fact + ";"));
+                con = new Conexion();
+                String [][]strReg = con.resultadoQuery(con.queryConsulta("SELECT cons_fact, nume_fact, fech_fact, "
+                        + "cons_clie, cons_vend, cons_cons, cons_vehi, estado FROM tabl_fact WHERE cons_fact = " + Fcons_fact + ";"));
 
-                cons_fact = Integer.parseInt(strResultado[0][0]);
-                nume_fact = strResultado[0][1];
-                fech_fact = strResultado[0][2];
-                cons_clie = Integer.parseInt(strResultado[0][3]);
-                cons_vend = Integer.parseInt(strResultado[0][4]);                        
-                cons_cons = Integer.parseInt(strResultado[0][5]);
-                cons_vehi = Integer.parseInt(strResultado[0][6]);
-                estado = strResultado[0][7];
+                cons_fact = Integer.parseInt(strReg[0][0]);
+                nume_fact = strReg[0][1];
+                fech_fact = strReg[0][2];
+                cons_clie = Integer.parseInt(strReg[0][3]);
+                cons_vend = Integer.parseInt(strReg[0][4]);                        
+                cons_cons = Integer.parseInt(strReg[0][5]);
+                cons_vehi = Integer.parseInt(strReg[0][6]);
+                estado = strReg[0][7];
             }
-//...............................................................................
-	//Para modificar el registro de una factura
             
-          
             public void CrudActualizarFactura(int Ncons_fact, String Nnume_fact, String Nfech_fact, int Ncons_clie, 
                     int Ncons_vend, int Ncons_cons, int Ncons_vehi, String Nestado){
-                Conexion AC = new Conexion();
+                con = new Conexion();
 
-                String[][]strResultado = AC.resultadoQuery(AC.queryConsulta("SELECT cons_fact, nume_fact, fech_fact,"
+                String [][]strReg = con.resultadoQuery(con.queryConsulta("SELECT cons_fact, nume_fact, fech_fact,"
                         + "cons_clie, cons_vend, cons_cons, cons_vehi, estado FROM tabl_fact WHERE cons_fact = " + Ncons_fact + ";" ));
-                if (strResultado[0][0]!= null){
-                AC.queryUpdate("UPDATE tabl_fact SET cons_fact = " + Ncons_fact + ", nume_fact = " + Nnume_fact 
-                        + ", fech_fact = " + Nfech_fact + ", cons_clie = " + Ncons_clie 
-                        + ", cons_vend = " + Ncons_vend + ", cons_cons = " + Ncons_cons + ", cons_vehi = " + Ncons_vehi  
-                        + ", estado = " + Nestado+ " WHERE cons_fact = " + Ncons_fact);
 
-                cons_fact = Ncons_fact;
+                
+                if(strReg[0][0] != null)
+	   {
+                con.queryUpdate("UPDATE tabl_fact SET nume_fact = '" + Nnume_fact + "', fech_fact = " + Nfech_fact + ", cons_clie = " + Ncons_clie 
+                        + ", cons_vend = " + Ncons_vend + ", cons_cons = " + Ncons_cons + ", cons_vehi = " + Ncons_vehi  
+                        + ", estado = '" + Nestado+ "' WHERE cons_fact = " + Ncons_fact);
+
                 nume_fact = Nnume_fact;
                 fech_fact = Nfech_fact;
                 cons_clie = Ncons_clie;
@@ -190,53 +158,58 @@ import javax.swing.JOptionPane;
                 cons_vehi = Ncons_vehi;
                 estado = Nestado;
 
-                String strMensaje = "Se modifico LA FACTURA con éxito";
-                   JOptionPane.showMessageDialog(null, strMensaje,  "MODIFICAR VENTA", 2);
+                String strMensaje = "Se modifico la factura con éxito";
+               JOptionPane.showMessageDialog(null, strMensaje,  "MODIFICAR FACTURA", 2);
 
-               }
-               else
-               {
-                   String strMensaje = "No se pudo modificar la FACTURA";
-                   JOptionPane.showMessageDialog(null, strMensaje,  "MODIFICAR VENTA", 0);
+	   }
+	   else
+	   {
+               String strMensaje = "No se pudo modificar la factura";
+               JOptionPane.showMessageDialog(null, strMensaje,  "MODIFICAR FACTURA", 0);
 
-               }
+                }
             }
-//...............................................................................
-        //	Para mostrar la lista de la tabla tabl_fact
+
 
         public Factura[] CrudListaFactura(){
 
             int intCont;
             int intTama=0;
 
-            Conexion CC = new Conexion();
+            con = new Conexion();
   
             try{
-            String [][]strRes = CC.resultadoQuery(CC.queryConsulta("SELECT COUNT(cons_fact) "
-                + "AS TANTOS FROM tabl_fact;"));
+            String [][]strReg = con.resultadoQuery(con.queryConsulta("SELECT COUNT(cons_fact) "
+                + "AS TANTOS FROM tabl_fact ;"));
             
-            intTama = Integer.parseInt(strRes[0][0]);
+            intTama = Integer.parseInt(strReg[0][0]);
+            
             System.out.print("\n El tamaño es:" + intTama + "\n");
             
-            Factura[] mVentas = new Factura[intTama]; //Constructor Arreglo
+             
                         
-            strRes = CC.resultadoQuery(CC.queryConsulta("SELECT cons_fact, nume_fact, fech_fact, cons_clie, "
-                    + "cons_vend, cons_cons, cons_vehi, estado FROM tabl_fact"));
-
-            for (intCont=0; intCont<(intTama); intCont++){
-            Factura tabl_factAux = new Factura((Integer.parseInt(strRes[intCont][0])), strRes[intCont][1],
-                    strRes[intCont][2],(Integer.parseInt(strRes[intCont][3])),
-                    (Integer.parseInt(strRes[intCont][4])),(Integer.parseInt(strRes[intCont][5])),
-                    (Integer.parseInt(strRes[intCont][6])), strRes[intCont][7]); // Crea instancia
-            mVentas[intCont] = tabl_factAux; //Guardar en el vector
-            }
+            strReg = con.resultadoQuery(con.queryConsulta(
+                    "SELECT cons_fact, nume_fact, fech_fact, cons_clie, cons_vend, cons_cons, cons_vehi, estado FROM tabl_fact ORDER BY cons_fact ;"));
             
-            System.out.print("Fueron " + intTama + " facturas");//Muestra cuantas ventas hay
-            return mVentas;//Retorna las ventas
+            
+            Factura[] Lista = new Factura[intTama];
+            
+              
+                
+           
+            for (intCont=0; intCont<(intTama); intCont++){
+            Factura factAux = new Factura((Integer.parseInt(strReg[intCont][0])), strReg[intCont][1],
+                    strReg[intCont][2],(Integer.parseInt(strReg[intCont][3])),
+                    (Integer.parseInt(strReg[intCont][4])),(Integer.parseInt(strReg[intCont][5])),
+                    (Integer.parseInt(strReg[intCont][6])), strReg[intCont][7]); 
+            
+                Lista[intCont] = factAux; 
+                }
+                    return Lista;
             }
 
             catch(Exception ex){
-            String strMensaje = "Se presento un problema con la lista de facturas";
+            String strMensaje = "Se presento un problema con la lista de facturas 1";
             JOptionPane.showMessageDialog(null, strMensaje, "PROBLEMA CON LA LISTA", 0);
             System.out.print(ex);
             return null;
