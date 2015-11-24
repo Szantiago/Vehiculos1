@@ -64,3 +64,5 @@ $RECYCLE.BIN/
 nbproject/private/private.properties
 *.properties
 *.properties
+nbproject/private/private.properties
+*.properties
