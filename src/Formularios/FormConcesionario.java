@@ -17,10 +17,11 @@ public class FormConcesionario extends javax.swing.JFrame {
 
        Concesionario miconcesionario = new Concesionario();
        Concesionario [] miListaC =  miconcesionario.crudListaConsecionario();
-       boolean C;
+       
        Concesionario mipoblado = new Concesionario();
        Concesionario [] miListaP =  mipoblado.crudListaPoblado();
-       boolean P;
+       
+       boolean c, p;
     
     
     /**
@@ -34,16 +35,17 @@ public class FormConcesionario extends javax.swing.JFrame {
         this.setSize(540,480);
  //.................................
         //Contador del formulario        
-        C=true;
+        c=true;
         for(int intcont=0; intcont < miListaC.length; intcont++ ){
         jComboC.addItem(miListaC[intcont].getcons_cons()+" - "+ miListaC[intcont].getnomb_cons() 
                 +" - "+ miListaC[intcont].getcodi_pobl()+" - "+ miListaC[intcont].gettele_cons()
                 +" - "+miListaC[intcont].getdire_cons()+" - "+miListaC[intcont].getestado());                         
             }
-        P=true;
-        for(int intcont=0; intcont < miListaC.length; intcont++ ){
-        cbxpoblado.addItem(miListaP[intcont].getcons_muni()+" - "+ miListaC[intcont].getcodi_pobl()
-                +" - "+ miListaC[intcont].getnombre_muni());  
+ 
+        for(int intcont=0; intcont < miListaP.length; intcont++ ){
+        cbxpoblado.addItem(miListaP[intcont].getcons_muni()+" - "+ miListaP[intcont].getcodi_pobl()
+                +" - "+ miListaP[intcont].getnombre_muni()); 
+        cbxpoblado.setSelectedIndex(0);
             }  
         
         
@@ -82,6 +84,7 @@ public class FormConcesionario extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jComboC = new javax.swing.JComboBox<String>();
+        mipobl = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -203,7 +206,9 @@ public class FormConcesionario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(mipobl, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -211,14 +216,19 @@ public class FormConcesionario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscar)
-                    .addComponent(jLabel6)
-                    .addComponent(jComboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnbuscar)
+                            .addComponent(jLabel6)
+                            .addComponent(jComboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(mipobl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jComboC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -266,33 +276,39 @@ public class FormConcesionario extends javax.swing.JFrame {
     }//GEN-LAST:event_btncrearActionPerformed
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
+        
+                        
+        int tele= Integer.parseInt(txttel.getText());
+        miconcesionario.crudActualizarConsencionario(Integer.parseInt(txtID.getText()),txtnombcons.getText(),
+        txtpoblado.getText(),tele,txtdireccion.getText(), txtestado.getText());
+        
+        txtID.setText(""+miconcesionario.getcons_cons());
+        txtnombcons.setText("");
+        mipobl.setText(""); // Entrega el valor en los campos de texto
+        txttel.setText(""); // Entrega el valor en los campos de texto  
+        txtdireccion.setText(""); // Entrega el valor en los campos de texto
+        txtestado.setText(""); // Entrega el valor en los campos de texto
+        
+        //btncrear.setEnabled(false); // Se mantiene el botón actualizar como falso  
+        
         Realizado e =new Realizado();
         FormConcesionario h = new FormConcesionario();
                 
                         e.setVisible(true);
                         h.setVisible(false);
                         setVisible(false);
-        
-        miconcesionario.crudActualizarConsencionario(Integer.parseInt(txtID.getText()),txtnombcons.getText(),
-        txtpoblado.getText(),Integer.parseInt(txttel.getText()),txtdireccion.getText(), txtestado.getText());
-        
-        txtID.setText(""+miconcesionario.getcons_cons());
-        txtnombcons.setText("");
-        txtpoblado.setText(""); // Entrega el valor en los campos de texto
-        txttel.setText(""); // Entrega el valor en los campos de texto  
-        txtdireccion.setText(""); // Entrega el valor en los campos de texto
-        txtestado.setText(""); // Entrega el valor en los campos de texto
-        
-        btncrear.setEnabled(false); // Se mantiene el botón actualizar como falso  
-        
     }//GEN-LAST:event_btnmodificarActionPerformed
 
     private void cbxpobladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxpobladoActionPerformed
         
-       if(P){ 
-        txtpoblado.setText(cbxpoblado.getSelectedItem().toString());
-        Concesionario[] miLista = miconcesionario.crudListaPoblado();
-        miconcesionario = miLista[jComboC.getSelectedIndex()];
+       if(p){ 
+        
+        Concesionario mD = new Concesionario();
+        Concesionario[] lD = mD.crudListaPoblado();
+        mD=lD[cbxpoblado.getSelectedIndex()];
+        String varPo = mD.getcodi_pobl();
+        
+        mipobl.setText(mD.getcodi_pobl());
         btncrear.setEnabled(true); // Se mantiene el botón insertar como verdadero
         btnmodificar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
         }
@@ -324,7 +340,7 @@ public class FormConcesionario extends javax.swing.JFrame {
         h.setVisible(false);
         setVisible(false);
                 
-        C=false; // Se declara la variable booleana como falsa para no realizar la acción       
+        c=false; // Se declara la variable booleana como falsa para no realizar la acción       
         txtnombcons.setText(""); // Entrega el valor en los campos de texto
         txtpoblado.setText(""); // Entrega el valor en los campos de texto  
         txttel.setText(""); // Entrega el valor en los campos de texto
@@ -345,9 +361,9 @@ public class FormConcesionario extends javax.swing.JFrame {
         +" - "+ miLista[intcont].getdire_cons()+" - "+miLista[intcont].getestado()); 
         jComboC.setSelectedIndex(0); // Posiciona el jcombo en la posición 0 
             }           
-        C=true;
+        c=true;
 //.......................................................................................................................
-        P=false; // Se declara la variable booleana como falsa para no realizar la acción
+        p=false; // Se declara la variable booleana como falsa para no realizar la acción
 
         btncrear.setEnabled(true); // Se mantiene el botón insertar como verdadero
         btnmodificar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
@@ -361,7 +377,7 @@ public class FormConcesionario extends javax.swing.JFrame {
         +" - "+ miListaP[intcont].getnombre_muni());    
         cbxpoblado.setSelectedIndex(0); // Posiciona el jcombo en la posició 0
             }
-        P=true; // Se declara la variable booleana como verdadera para que luego se pueda realizar la acción
+       p=true; // Se declara la variable booleana como verdadera para que luego se pueda realizar la acción
         
     }//GEN-LAST:event_btnlimpiarActionPerformed
 
@@ -372,15 +388,16 @@ public class FormConcesionario extends javax.swing.JFrame {
 
     private void jComboCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboCActionPerformed
         // TODO add your handling code here:
-        if(C){
-        Concesionario[] miLista = miconcesionario.crudListaConsecionario();
-        miconcesionario = miLista[jComboC.getSelectedIndex()];
-
-        txtnombcons.setText(miconcesionario.getnomb_cons());
-        txtpoblado.setText(miconcesionario.getcodi_pobl());
-        txttel.setText(" " + miconcesionario.gettele_cons());
-        txtdireccion.setText(" " + miconcesionario.getdire_cons());
-        txtestado.setText(" " + miconcesionario.getestado());
+        if(c){
+        Concesionario[] miListaC = miconcesionario.crudListaConsecionario();
+        miconcesionario = miListaC[jComboC.getSelectedIndex()];
+        
+        txtID.setText(""+miconcesionario.getcons_cons());
+        txtnombcons.setText(""+miconcesionario.getnomb_cons());
+        txtpoblado.setText(""+miconcesionario.getcodi_pobl());
+        txttel.setText("" + miconcesionario.gettele_cons());
+        txtdireccion.setText("" + miconcesionario.getdire_cons());
+        txtestado.setText("" + miconcesionario.getestado());
         
         btncrear.setEnabled(true); // Se mantiene el botón insertar como verdadero
         btnmodificar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
@@ -441,6 +458,7 @@ public class FormConcesionario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JTextField mipobl;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtdireccion;
     private javax.swing.JTextField txtestado;
