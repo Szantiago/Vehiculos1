@@ -78,12 +78,18 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jComboEstado" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD
                               <Component id="txtestado" min="-2" max="-2" attributes="0"/>
+=======
+                              <Component id="txtestado" min="-2" pref="41" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="mipobl" min="-2" pref="37" max="-2" attributes="0"/>
+>>>>>>> origin/master
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -92,15 +98,23 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtID" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnbuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboEstado" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtestado" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnbuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtestado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="mipobl" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboC" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -261,6 +275,8 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="mipobl">
     </Component>
   </SubComponents>
 </Form>

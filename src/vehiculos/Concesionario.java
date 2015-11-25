@@ -126,8 +126,8 @@ public class Concesionario {
             conMiconexion = new Conexion();
             //int intAux;          
             conMiconexion.queryUpdate("INSERT INTO tabl_cons( nomb_cons, codi_pobl,"
-                    + " tele_cons, dire_cons, estado) VALUES('" +strnomb_cons +"," +
-                    strcodi_pobl + ","+ Inttele_cons + "," + strdire_cons + "," + strestado +");");
+                    + " tele_cons, dire_cons, estado) VALUES('" +strnomb_cons +"' , '" +
+                    strcodi_pobl + "',"+ Inttele_cons + ",'" + strdire_cons + "','" + strestado +"');");
             
             String strMensaje = "Se creo con éxito";
             JOptionPane.showMessageDialog (null, strMensaje,  "Crear Consecionario ", 2);   
@@ -142,10 +142,10 @@ public class Concesionario {
 	   if(strReg[0][0] != null)
 	   {
                
-               conMiconexion.queryUpdate("UPDATE tabl_cons SET  nomb_cons= "
-                       + strnomb_cons + ", codi_pobl= "+ strcodi_pobl
-                       + ", tele_cons= "+ Inttele_cons + ", dire_cons= "+ strdire_cons + ", estado= "+ strestado 
-                       +  " WHERE  cons_cons = " + Intcons_cons +";");
+               conMiconexion.queryUpdate("UPDATE tabl_cons SET  nomb_cons= '"
+                       + strnomb_cons + "', codi_pobl= '"+ strcodi_pobl
+                       + "', tele_cons= "+ Inttele_cons + ", dire_cons= '"+ strdire_cons + "', estado= '"+ strestado 
+                       +  "' WHERE  cons_cons = " + Intcons_cons +";");
                
                 cons_conse = Intcons_cons;
                 nomb_cons = strnomb_cons;
