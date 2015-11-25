@@ -333,13 +333,13 @@ public class FormCliente extends javax.swing.JFrame {
         mCliente = miListaCl[jcomboCl.getSelectedIndex()];
         
         txtbuscar.setText(""+mCliente.getcons_clie());
-        txtnum_doc.setText("" + mCliente.getnume_iden()); // Entrega el valor en los campos de texto
-        txtprim_nomb.setText("" + mCliente.getprim_nomb()); // Entrega el valor en los campos de texto
-        txtsegu_nomb.setText("" + mCliente.getsegu_nomb()); // Entrega el valor en los campos de texto
-        txtprim_apel.setText("" + mCliente.getprim_apel()); // Entrega el valor en los campos de texto
-        txtsegu_apel.setText("" + mCliente.getsegu_apel()); // Entrega el valor en los campos de texto
-        txtcent_pobl.setText("" + mCliente.getcent_pobl()); // Entrega el valor en los campos de texto
-        txtgene.setText("" + mCliente.getgene_clie()); // Entrega el valor en los campos de texto
+        txtnum_doc.setText("" + mCliente.getnume_iden()); 
+        txtprim_nomb.setText("" + mCliente.getprim_nomb()); 
+        txtsegu_nomb.setText("" + mCliente.getsegu_nomb()); 
+        txtprim_apel.setText("" + mCliente.getprim_apel()); 
+        txtsegu_apel.setText("" + mCliente.getsegu_apel()); 
+        txtcent_pobl.setText("" + mCliente.getcent_pobl()); 
+        
         btnInsertar.setEnabled(true); // Se mantiene el botón insertar como verdadero
         btnActualizar.setEnabled(true); // Se mantiene el botón actualizar como verdadero      
         }
@@ -421,14 +421,14 @@ public class FormCliente extends javax.swing.JFrame {
         
         jcomboCl.setSelectedIndex(mCliente.getcons_clie());
         
-        txtnum_doc.setText(""); // Entrega el valor en los campos de texto
-        txtprim_nomb.setText(""); // Entrega el valor en los campos de texto
-        txtsegu_nomb.setText(""); // Entrega el valor en los campos de texto
-        txtprim_apel.setText(""); // Entrega el valor en los campos de texto
-        txtsegu_apel.setText(""); // Entrega el valor en los campos de texto
-        txtgene.setText("");// Entrega el valor en los campos de texto
-        txtcent_pobl.setText(""); // Entrega el valor en los campos de texto
-        txtestado.setText(""); // Entrega el valor en los campos de texto
+        txtnum_doc.setText(""); 
+        txtprim_nomb.setText(""); 
+        txtsegu_nomb.setText(""); 
+        txtprim_apel.setText(""); 
+        txtsegu_apel.setText(""); 
+        txtgene.setText("");
+        txtcent_pobl.setText("");
+        txtestado.setText(""); 
         
 
         btnActualizar.setEnabled(false); // Se mantiene el botón actualizar como falso

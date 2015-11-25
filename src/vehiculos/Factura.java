@@ -112,7 +112,7 @@ import javax.swing.JOptionPane;
                 
                 con= new Conexion();
                 con.queryUpdate("INSERT INTO tabl_fact (nume_fact, fech_fact, cons_clie, cons_vend, cons_cons, cons_vehi, estado) "
-                    + "VALUES( '" + Inume_fact +"','"+ Ifech_fact +"','"+ Icons_clie +"','"+ Icons_vend +"','"+ Icons_cons +"','"+ Icons_vehi +"','"+ Iestado +"');");
+                    + "VALUES( '"+ Inume_fact +"','"+ Ifech_fact +"',"+ Icons_clie +","+ Icons_vend +","+ Icons_cons +","+ Icons_vehi +",'"+ Iestado +"');");
                 
             String strMensaje = "Se creo la factura con éxito";
             JOptionPane.showMessageDialog(null, strMensaje,  "CREAR Factura", 2); 
@@ -146,7 +146,7 @@ import javax.swing.JOptionPane;
                 
                 if(strReg[0][0] != null)
 	   {
-                con.queryUpdate("UPDATE tabl_fact SET nume_fact = '" + Nnume_fact + "', fech_fact = " + Nfech_fact + ", cons_clie = " + Ncons_clie 
+                con.queryUpdate("UPDATE tabl_fact SET nume_fact = " + Nnume_fact + ", fech_fact = " + Nfech_fact + ", cons_clie = " + Ncons_clie 
                         + ", cons_vend = " + Ncons_vend + ", cons_cons = " + Ncons_cons + ", cons_vehi = " + Ncons_vehi  
                         + ", estado = '" + Nestado+ "' WHERE cons_fact = " + Ncons_fact);
 
@@ -229,13 +229,13 @@ import javax.swing.JOptionPane;
 //            cons_cons;
 //            cons_vehi;
         //...................................................................................   
-        //Prueba insertar un Venta 
-//                mR.CrudInsertarVenta(1, 1, 1, 2, 400000000, "20/06/2015");     
+//        Prueba insertar un Venta 
+                mR.CrudInsertarFactura("1212", "20/06/2015" , 1, 1, 1, 1, "activo" );     
         //...................................................................................
         //pueba para buscar una Venta
-                mR.CrudBuscarFactura(1); 
+//                mR.CrudBuscarFactura(1); 
         //mR.CrudBuscarVenta(1);
-               System.out.print("\n-El nuevo Venta es: " + mR.getcons_fact()+ " - " + mR.getnume_fact() + " - " + mR.getfech_fact()+ " - " +  mR.getcons_clie() +" - " + mR.getcons_vend() +" - " + mR.getcons_cons() +" - " + mR.getcons_vehi() + "\n");
+//               System.out.print("\n-El nuevo Venta es: " + mR.getcons_fact()+ " - " + mR.getnume_fact() + " - " + mR.getfech_fact()+ " - " +  mR.getcons_clie() +" - " + mR.getcons_vend() +" - " + mR.getcons_cons() +" - " + mR.getcons_vehi() + "\n");
 //        //...................................................................................
 //        //Prueba para actualizar una Venta
 //                mR.CrudActualizarVenta(1, 1, 1, 1, 2, 400000000, "20/06/2015");

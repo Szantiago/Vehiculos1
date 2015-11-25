@@ -41,9 +41,9 @@ public class FormConcesionario extends javax.swing.JFrame {
                 +" - "+miListaC[intcont].getdire_cons()+" - "+miListaC[intcont].getestado());                         
             }
         P=true;
-        for(int intcont=0; intcont < miListaC.length; intcont++ ){
-        cbxpoblado.addItem(miListaP[intcont].getcons_muni()+" - "+ miListaC[intcont].getcodi_pobl()
-                +" - "+ miListaC[intcont].getnombre_muni());  
+        for(int intcont=0; intcont < miListaP.length; intcont++ ){
+        cbxpoblado.addItem(miListaP[intcont].getcons_muni()+" - "+ miListaP[intcont].getcodi_pobl()
+                +" - "+ miListaP[intcont].getnombre_muni());  
             }  
         
         
@@ -135,7 +135,7 @@ public class FormConcesionario extends javax.swing.JFrame {
 
         jLabel6.setText("Estado");
 
-        jComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        jComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "activo", "inactivo" }));
         jComboEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboEstadoActionPerformed(evt);
@@ -183,8 +183,7 @@ public class FormConcesionario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnlimpiar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1)))
-                        .addGap(javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jButton1))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,21 +192,18 @@ public class FormConcesionario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboC, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(114, 114, 114)
-                                        .addComponent(jLabel5))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnbuscar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(114, 114, 114)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnbuscar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -240,7 +236,7 @@ public class FormConcesionario extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(txttel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -257,8 +253,8 @@ public class FormConcesionario extends javax.swing.JFrame {
 
     private void btncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncrearActionPerformed
        
-       miconcesionario.crudCrearConsencionario(txtnombcons.getText(),txtpoblado.getText(),
-       Integer.parseInt(txttel.getText()),txtdireccion.getText(), txtestado.getText());
+       miconcesionario.crudCrearConsencionario(txtnombcons.getText(),Integer.parseInt(txtpoblado.getText()),
+       Integer.parseInt(txttel.getText()),txtdireccion.getText(), jComboEstado.getSelectedItem().toString());
        txtnombcons.setText("");
        txtpoblado.setText("");
        txttel.setText("");
@@ -278,7 +274,7 @@ public class FormConcesionario extends javax.swing.JFrame {
                         setVisible(false);
         
         miconcesionario.crudActualizarConsencionario(Integer.parseInt(txtID.getText()),txtnombcons.getText(),
-        txtpoblado.getText(),Integer.parseInt(txttel.getText()),txtdireccion.getText(), txtestado.getText());
+        Integer.parseInt(txtpoblado.getText()),Integer.parseInt(txttel.getText()),txtdireccion.getText(), jComboEstado.getSelectedItem().toString());
         
         txtID.setText(""+miconcesionario.getcons_cons());
         txtnombcons.setText("");
@@ -293,12 +289,19 @@ public class FormConcesionario extends javax.swing.JFrame {
 
     private void cbxpobladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxpobladoActionPerformed
         
-       if(P){ 
-        txtpoblado.setText(cbxpoblado.getSelectedItem().toString());
-        Concesionario[] miLista = miconcesionario.crudListaPoblado();
-        miconcesionario = miLista[jComboC.getSelectedIndex()];
+       if(P){    
+        
+        Concesionario[] miListaP = mipoblado.crudListaPoblado();
+        mipoblado = miListaP[cbxpoblado.getSelectedIndex()];
+        
+        
+        Concesionario mp = new Concesionario();
+        Concesionario[] lp = mp.crudListaPoblado();
+        mp=lp[cbxpoblado.getSelectedIndex()];
+        int var=mp.getcons_muni();
+        
         btncrear.setEnabled(true); // Se mantiene el botón insertar como verdadero
-        btnmodificar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
+        btnmodificar.setEnabled(true); // Se mantiene el botón actualizar como verdader
         }
     }//GEN-LAST:event_cbxpobladoActionPerformed
 
@@ -379,12 +382,19 @@ public class FormConcesionario extends javax.swing.JFrame {
         if(C){
         Concesionario[] miLista = miconcesionario.crudListaConsecionario();
         miconcesionario = miLista[jComboC.getSelectedIndex()];
-
+        
+        Concesionario mc = new Concesionario();
+        Concesionario[] lc = mc.crudListaConsecionario();
+        mc=lc[jComboC.getSelectedIndex()];
+        int var=mc.getcons_cons();
+        
         txtnombcons.setText(miconcesionario.getnomb_cons());
-        txtpoblado.setText(miconcesionario.getcodi_pobl());
+        txtpoblado.setText(" " +miconcesionario.getcodi_pobl());
         txttel.setText(" " + miconcesionario.gettele_cons());
         txtdireccion.setText(" " + miconcesionario.getdire_cons());
         txtestado.setText(" " + miconcesionario.getestado());
+        cbxpoblado.setSelectedItem(txtpoblado.getText());
+        jComboEstado.setSelectedItem(txtestado.getText());
         
         btncrear.setEnabled(true); // Se mantiene el botón insertar como verdadero
         btnmodificar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
