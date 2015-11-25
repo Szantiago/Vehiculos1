@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Formularios;
+
 import javax.swing.JOptionPane;
 import vehiculos.*;
 
@@ -12,45 +13,37 @@ import vehiculos.*;
  * @author L3Li
  */
 public class FormConcesionario extends javax.swing.JFrame {
+    
+    Concesionario miconcesionario = new Concesionario();
+    Concesionario[] miListaC = miconcesionario.crudListaConsecionario();
+    
+    Concesionario mipoblado = new Concesionario();
+    Concesionario[] miListaP = mipoblado.crudListaPoblado();
+    
+    boolean c, p;
 
-    
-
-       Concesionario miconcesionario = new Concesionario();
-       Concesionario [] miListaC =  miconcesionario.crudListaConsecionario();
-       
-       Concesionario mipoblado = new Concesionario();
-       Concesionario [] miListaP =  mipoblado.crudListaPoblado();
-       
-       boolean c, p;
-    
-    
     /**
      * Creates new form Concesionario
      */
     public FormConcesionario() {
         initComponents();
         
-        
-      this.setLocation(300,120);//En esta instancia(this)cambiar(set)la posición(Location)
-        this.setSize(540,480);
- //.................................
+        this.setLocation(300, 120);//En esta instancia(this)cambiar(set)la posición(Location)
+        this.setSize(540, 480);
+        //.................................
         //Contador del formulario        
-        c=true;
-        for(int intcont=0; intcont < miListaC.length; intcont++ ){
-        jComboC.addItem(miListaC[intcont].getcons_cons()+" - "+ miListaC[intcont].getnomb_cons() 
-                +" - "+ miListaC[intcont].getcodi_pobl()+" - "+ miListaC[intcont].gettele_cons()
-                +" - "+miListaC[intcont].getdire_cons()+" - "+miListaC[intcont].getestado());                         
-            }
- 
-        for(int intcont=0; intcont < miListaP.length; intcont++ ){
-        cbxpoblado.addItem(miListaP[intcont].getcons_muni()+" - "+ miListaP[intcont].getcodi_pobl()
-                +" - "+ miListaP[intcont].getnombre_muni()); 
-        cbxpoblado.setSelectedIndex(0);
-            }  
+        c = true;
+        for (int intcont = 0; intcont < miListaC.length; intcont++) {
+            jComboC.addItem(miListaC[intcont].getcons_cons() + " - " + miListaC[intcont].getnomb_cons()
+                    + " - " + miListaC[intcont].getcodi_pobl() + " - " + miListaC[intcont].gettele_cons()
+                    + " - " + miListaC[intcont].getdire_cons() + " - " + miListaC[intcont].getestado());            
+        }
         
-        
-
-      
+        for (int intcont = 0; intcont < miListaP.length; intcont++) {
+            cbxpoblado.addItem(miListaP[intcont].getcons_muni() + " - " + miListaP[intcont].getcodi_pobl()
+                    + " - " + miListaP[intcont].getnombre_muni());            
+            cbxpoblado.setSelectedIndex(0);
+        }        
         
     }
 
@@ -262,69 +255,67 @@ public class FormConcesionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncrearActionPerformed
-       
-       miconcesionario.crudCrearConsencionario(txtnombcons.getText(),txtpoblado.getText(),
-       Integer.parseInt(txttel.getText()),txtdireccion.getText(), txtestado.getText());
-       txtnombcons.setText("");
-       txtpoblado.setText("");
-       txttel.setText("");
-       txtdireccion.setText("");
-       txtestado.setText("");
-       
-       btnmodificar.setEnabled(false); 
-      
+        
+        miconcesionario.crudCrearConsencionario(txtnombcons.getText(), txtpoblado.getText(),
+                Integer.parseInt(txttel.getText()), txtdireccion.getText(), txtestado.getText());
+        txtnombcons.setText("");
+        txtpoblado.setText("");
+        txttel.setText("");
+        txtdireccion.setText("");
+        txtestado.setText("");
+        
+        btnmodificar.setEnabled(false);        
+        
     }//GEN-LAST:event_btncrearActionPerformed
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
         
-                        
-        int tele= Integer.parseInt(txttel.getText());
-        miconcesionario.crudActualizarConsencionario(Integer.parseInt(txtID.getText()),txtnombcons.getText(),
-        txtpoblado.getText(),tele,txtdireccion.getText(), txtestado.getText());
+        int tele = Integer.parseInt(txttel.getText());
+        miconcesionario.crudActualizarConsencionario(Integer.parseInt(txtID.getText()), txtnombcons.getText(),
+                txtpoblado.getText(), tele, txtdireccion.getText(), txtestado.getText());
         
-        txtID.setText(""+miconcesionario.getcons_cons());
+        txtID.setText("" + miconcesionario.getcons_cons());
         txtnombcons.setText("");
         mipobl.setText(""); // Entrega el valor en los campos de texto
         txttel.setText(""); // Entrega el valor en los campos de texto  
         txtdireccion.setText(""); // Entrega el valor en los campos de texto
         txtestado.setText(""); // Entrega el valor en los campos de texto
-        
+
         //btncrear.setEnabled(false); // Se mantiene el botón actualizar como falso  
-        
-        Realizado e =new Realizado();
+        Realizado e = new Realizado();
         FormConcesionario h = new FormConcesionario();
-                
-                        e.setVisible(true);
-                        h.setVisible(false);
-                        setVisible(false);
+        
+        e.setVisible(true);
+        h.setVisible(false);
+        setVisible(false);
     }//GEN-LAST:event_btnmodificarActionPerformed
 
     private void cbxpobladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxpobladoActionPerformed
         
-       if(p){ 
-        
-        Concesionario mD = new Concesionario();
-        Concesionario[] lD = mD.crudListaPoblado();
-        mD=lD[cbxpoblado.getSelectedIndex()];
-        String varPo = mD.getcodi_pobl();
-        
-        mipobl.setText(mD.getcodi_pobl());
-        btncrear.setEnabled(true); // Se mantiene el botón insertar como verdadero
-        btnmodificar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
+        if (p) {            
+            
+            Concesionario mD = new Concesionario();
+            Concesionario[] lD = mD.crudListaPoblado();
+            mD = lD[cbxpoblado.getSelectedIndex()];
+            String varPo = mD.getcodi_pobl();
+            
+            mipobl.setText(mD.getcodi_pobl());
+            btncrear.setEnabled(true); // Se mantiene el botón insertar como verdadero
+            btnmodificar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
         }
     }//GEN-LAST:event_cbxpobladoActionPerformed
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
-       
-       miconcesionario.crudMostrarConsecionario((Integer.parseInt(txtID.getText())));
+        
+        miconcesionario.crudMostrarConsecionario((Integer.parseInt(txtID.getText())));
         txtnombcons.setText(miconcesionario.getnomb_cons());
-        txttel.setText(""+miconcesionario.gettele_cons());
+        txttel.setText("" + miconcesionario.gettele_cons());
         txtdireccion.setText(miconcesionario.getdire_cons());
         txtpoblado.setText(miconcesionario.getcodi_pobl());
         
         btncrear.setEnabled(false);
         
-        
+
     }//GEN-LAST:event_btnbuscarActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
@@ -333,51 +324,51 @@ public class FormConcesionario extends javax.swing.JFrame {
 
     private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
         // TODO add your handling code here:
-        Realizado e =new Realizado();
+        Realizado e = new Realizado();
         FormConcesionario h = new FormConcesionario();
-                
+        
         e.setVisible(true);
         h.setVisible(false);
         setVisible(false);
-                
-        c=false; // Se declara la variable booleana como falsa para no realizar la acción       
+        
+        c = false; // Se declara la variable booleana como falsa para no realizar la acción       
         txtnombcons.setText(""); // Entrega el valor en los campos de texto
         txtpoblado.setText(""); // Entrega el valor en los campos de texto  
         txttel.setText(""); // Entrega el valor en los campos de texto
         txtdireccion.setText(""); // Entrega el valor en los campos de texto
         txtestado.setText(""); // Entrega el valor en los campos de texto
         cbxpoblado.setSelectedIndex(0);
-
+        
         btncrear.setEnabled(true); // Se mantiene el botón insertar como verdadero
         btnmodificar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
-       
+        
         jComboC.removeAllItems(); //Se limpia el formulario.       
-        Concesionario[] miLista =miconcesionario.crudListaConsecionario();
+        Concesionario[] miLista = miconcesionario.crudListaConsecionario();
         // Se crea un for para borrar el formulario y que el jCombo no este vacio
 
-        for(int intcont=0; intcont < miLista.length; intcont++ ){
-        jComboC.addItem(miLista[intcont].getcons_cons()+" - "+ miLista[intcont].getnomb_cons()
-        +" - "+ miLista[intcont].getcodi_pobl()+" - "+miLista[intcont].gettele_cons()
-        +" - "+ miLista[intcont].getdire_cons()+" - "+miLista[intcont].getestado()); 
-        jComboC.setSelectedIndex(0); // Posiciona el jcombo en la posición 0 
-            }           
-        c=true;
+        for (int intcont = 0; intcont < miLista.length; intcont++) {
+            jComboC.addItem(miLista[intcont].getcons_cons() + " - " + miLista[intcont].getnomb_cons()
+                    + " - " + miLista[intcont].getcodi_pobl() + " - " + miLista[intcont].gettele_cons()
+                    + " - " + miLista[intcont].getdire_cons() + " - " + miLista[intcont].getestado());            
+            jComboC.setSelectedIndex(0); // Posiciona el jcombo en la posición 0 
+        }        
+        c = true;
 //.......................................................................................................................
-        p=false; // Se declara la variable booleana como falsa para no realizar la acción
+        p = false; // Se declara la variable booleana como falsa para no realizar la acción
 
         btncrear.setEnabled(true); // Se mantiene el botón insertar como verdadero
         btnmodificar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
-       
+        
         jComboC.removeAllItems(); //Se limpia el formulario.
-        Concesionario[] miLista2 =miconcesionario.crudListaConsecionario();
-         
+        Concesionario[] miLista2 = miconcesionario.crudListaConsecionario();
+
         // Se crea un for para borrar el formulario y que el jCombo no este vacio
-        for(int intcont=0; intcont < miLista2.length; intcont++ ){
-        cbxpoblado.addItem(miListaP[intcont].getcons_muni()+" - "+ miListaP[intcont].getcodi_pobl()
-        +" - "+ miListaP[intcont].getnombre_muni());    
-        cbxpoblado.setSelectedIndex(0); // Posiciona el jcombo en la posició 0
-            }
-       p=true; // Se declara la variable booleana como verdadera para que luego se pueda realizar la acción
+        for (int intcont = 0; intcont < miLista2.length; intcont++) {
+            cbxpoblado.addItem(miListaP[intcont].getcons_muni() + " - " + miListaP[intcont].getcodi_pobl()
+                    + " - " + miListaP[intcont].getnombre_muni());            
+            cbxpoblado.setSelectedIndex(0); // Posiciona el jcombo en la posició 0
+        }
+        p = true; // Se declara la variable booleana como verdadera para que luego se pueda realizar la acción
         
     }//GEN-LAST:event_btnlimpiarActionPerformed
 
@@ -388,19 +379,19 @@ public class FormConcesionario extends javax.swing.JFrame {
 
     private void jComboCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboCActionPerformed
         // TODO add your handling code here:
-        if(c){
-        Concesionario[] miListaC = miconcesionario.crudListaConsecionario();
-        miconcesionario = miListaC[jComboC.getSelectedIndex()];
-        
-        txtID.setText(""+miconcesionario.getcons_cons());
-        txtnombcons.setText(""+miconcesionario.getnomb_cons());
-        txtpoblado.setText(""+miconcesionario.getcodi_pobl());
-        txttel.setText("" + miconcesionario.gettele_cons());
-        txtdireccion.setText("" + miconcesionario.getdire_cons());
-        txtestado.setText("" + miconcesionario.getestado());
-        
-        btncrear.setEnabled(true); // Se mantiene el botón insertar como verdadero
-        btnmodificar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
+        if (c) {
+            Concesionario[] miListaC = miconcesionario.crudListaConsecionario();
+            miconcesionario = miListaC[jComboC.getSelectedIndex()];
+            
+            txtID.setText("" + miconcesionario.getcons_cons());
+            txtnombcons.setText("" + miconcesionario.getnomb_cons());
+            txtpoblado.setText("" + miconcesionario.getcodi_pobl());
+            txttel.setText("" + miconcesionario.gettele_cons());
+            txtdireccion.setText("" + miconcesionario.getdire_cons());
+            txtestado.setText("" + miconcesionario.getestado());
+            
+            btncrear.setEnabled(true); // Se mantiene el botón insertar como verdadero
+            btnmodificar.setEnabled(true); // Se mantiene el botón actualizar como verdadero
         }
     }//GEN-LAST:event_jComboCActionPerformed
 
@@ -408,8 +399,7 @@ public class FormConcesionario extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
-        
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -466,7 +456,5 @@ public class FormConcesionario extends javax.swing.JFrame {
     private javax.swing.JTextField txtpoblado;
     private javax.swing.JTextField txttel;
     // End of variables declaration//GEN-END:variables
-
-   
 
 }
